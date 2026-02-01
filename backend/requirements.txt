@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+pydantic[Email]
+numpy
+torch  # inference in backend
+opencv-python

@@ -1,0 +1,10 @@
+jupyter
+notebook
+jupyterlab
+matplotlib
+pandas
+scikit-learn
+opencv-python
+seaborn
+numpy
+ultralytics
