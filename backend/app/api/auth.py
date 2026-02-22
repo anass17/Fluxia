@@ -63,7 +63,7 @@ def register_stuff(
 
 # Login Endpoint
 
-@router.post('/login', response_model=AuthResponse)
+@router.post('/login', response_model=AuthResponse or HTTPException)
 def login(
     form_data: LoginRequest,
     db: Session = Depends(get_db)

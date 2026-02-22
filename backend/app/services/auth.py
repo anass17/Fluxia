@@ -1,5 +1,6 @@
 from app.core.security import create_access_token, verify_password, hash_password
 from app.models.user import UserModel
+from fastapi import HTTPException, status
 
 
 class AuthService:
@@ -63,6 +64,9 @@ class AuthService:
 
         if not verify_password(password, user.password):
             return None
+        
+        if user.is_active == False:
+            raise HTTPException(status.HTTP_403_FORBIDDEN, "Your account has been blocked by an admin")
 
         token = create_access_token({"sub": str(user.id), "role": user.role})
         return {
