@@ -29,7 +29,7 @@ def register_client(
     if not token:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail="User already exists"
+            detail="Email already exists"
         )
 
     return token
@@ -54,7 +54,7 @@ def register_stuff(
     if not token:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail="User already exists"
+            detail="Email already exists"
         )
 
     return token
