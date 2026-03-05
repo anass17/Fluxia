@@ -33,16 +33,18 @@ services:
     depends_on:
       - jupyter
 
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   container_name: frontend
-  #   restart: always
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - backend
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - REACT_APP_API_URL=http://fastapi:8000
+    command: npm run dev -- --host
 
   postgres:
     image: postgres:15
