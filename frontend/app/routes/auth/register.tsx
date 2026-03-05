@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Form, Link, useActionData, useNavigation, redirect } from "react-router";
 import { authService } from "~/services/auth.service";
 import { z } from "zod";
+import { createUserSession } from "~/services/session.server";
 
 
 
@@ -37,8 +38,10 @@ export async function action({ request }: any) {
   }
 
   try {
-    await authService.register(data);
-    return redirect("/dashboard");
+    const response = await authService.register(data);
+    
+    return createUserSession(response, request)
+
   } catch (err: any) {
     return { error: err.message };
   }
