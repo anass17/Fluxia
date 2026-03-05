@@ -3,6 +3,7 @@ import { redirect } from "react-router";
 import { useState } from "react";
 import { Form, useActionData, useNavigation, Link } from "react-router";
 import { authService } from "~/services/auth.service";
+import { createUserSession } from "~/services/session.server";
 
 
 export const LoginSchema = z.object({
@@ -21,8 +22,10 @@ export async function action({ request }: { request: Request }) {
   }
 
   try {
-    await authService.login(result.data);
-    return redirect("/dashboard");
+    const response = await authService.login(result.data);
+
+    return createUserSession(response, request)
+
   } catch (err) {
     return { serverError: "Invalid email or password" };
   }
