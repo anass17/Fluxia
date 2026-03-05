@@ -1,37 +1,46 @@
 import { useEffect, useState } from "react";
 import { Form, Link, useActionData, useNavigation, redirect } from "react-router";
 import { authService } from "~/services/auth.service";
+import { z } from "zod";
+
+
+
+const registerSchema = z.object({
+  first_name: z.string().min(2, "Field Required"),
+  last_name: z.string().min(2, "Field Required"),
+  email: z.email("Invalid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  confirm_password: z.string(),
+  terms: z.coerce.boolean()
+}).refine((data) => data.password === data.confirm_password, {
+  message: "Passwords don't match",
+  path: ["confirm_password"], 
+}).refine((data) => data.terms === true, {
+  message: "You must accept the terms",
+  path: ["terms"],
+});
 
 
 export async function action({ request }: any) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  return data
+  const result = registerSchema.safeParse(data);
 
-  if (data.password !== data.confirmPassword) {
-    return { error: "Passwords do not match." }
+  if (!result.success) {
+    const fieldErrors = result.error.flatten().fieldErrors;
+    
+    return { 
+      errors: fieldErrors,
+      values: data
+    };
   }
 
   try {
     await authService.register(data);
     return redirect("/dashboard");
-  } catch (err) {
-    return { error: err };
-  }
-
-  return await authService.register(data);
-
-  try {
-    // 1. Attempt to register the user
-    await authService.register(data);
-    
-    // 2. If successful, redirect to the dashboard
-    return redirect("/dashboard"); 
-    
-  } catch (error: any) {
-    // 3. If it fails, return the error to the UI (useActionData)
-    return { error: error.message || "Registration failed" };
+  } catch (err: any) {
+    return { error: err.message };
   }
 }
 
@@ -39,13 +48,13 @@ export async function action({ request }: any) {
 export default function Register() {
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-  const data = useActionData();
+  const actionData = useActionData();
   const navigation = useNavigation();
 
   const isSubmitting = navigation.state === "submitting";
 
   useEffect(() => {
-    console.log(data)
+    console.log(actionData)
   }, [isSubmitting])
 
   // SVG Icons as functional constants to keep the JSX clean
@@ -70,9 +79,9 @@ export default function Register() {
       </div>
       
       <Form method="post" className="space-y-4">
-        {data?.error && (
+        {actionData?.error && (
           <div className="p-3 mb-4 text-sm text-red-100 bg-red-600 rounded-lg">
-            {data.error}
+            {actionData.error}
           </div>
         )}
         {/* Name Grid */}
@@ -84,6 +93,9 @@ export default function Register() {
               className="w-full px-4 py-2 text-slate-700 placeholder-slate-400 border border-gray-300 rounded-lg focus:ring-1 focus:ring-violet-500 focus:border-violet-500 outline-none transition-all"
               placeholder="Alex"
             />
+            {actionData?.errors?.first_name && (
+              <p className="text-red-500 text-xs mt-1">{actionData.errors.first_name[0]}</p>
+            )}
           </div>
           <div className="space-y-1">
             <label className="text-sm font-medium text-gray-700">Last Name</label>
@@ -92,6 +104,9 @@ export default function Register() {
               className="w-full px-4 py-2 text-slate-700 placeholder-slate-400 border border-gray-300 rounded-lg focus:ring-1 focus:ring-violet-500 focus:border-violet-500 outline-none transition-all"
               placeholder="Smith"
             />
+            {actionData?.errors?.last_name && (
+              <p className="text-red-500 text-xs mt-1">{actionData.errors.last_name[0]}</p>
+            )}
           </div>
         </div>
 
@@ -101,8 +116,11 @@ export default function Register() {
           <input 
             type="email" name="email"
             className="w-full px-4 py-2 text-slate-700 placeholder-slate-400 border border-gray-300 rounded-lg focus:ring-1 focus:ring-violet-500 focus:border-violet-500 outline-none transition-all"
-            placeholder="alex@restaurant.com"
+            placeholder="user@example.com"
           />
+          {actionData?.errors?.email && (
+            <p className="text-red-500 text-xs mt-1">{actionData.errors.email[0]}</p>
+          )}
         </div>
 
         {/* Password */}
@@ -123,6 +141,9 @@ export default function Register() {
               {showPass ? <EyeOffIcon /> : <EyeIcon />}
             </button>
           </div>
+          {actionData?.errors?.password && (
+            <p className="text-red-500 text-xs mt-1">{actionData.errors.password[0]}</p>
+          )}
         </div>
 
         {/* Confirm Password */}
@@ -143,17 +164,25 @@ export default function Register() {
               {showConfirm ? <EyeOffIcon /> : <EyeIcon />}
             </button>
           </div>
+          {actionData?.errors?.confirm_password && (
+            <p className="text-red-500 text-xs mt-1">{actionData.errors.confirm_password[0]}</p>
+          )}
         </div>
 
         {/* Terms and Conditions Checkbox */}
-        <div className="flex items-center space-x-2 pt-2">
-          <input 
-            type="checkbox" id="terms" name="terms"
-            className="w-4 h-4 text-violet-600 border-gray-300 rounded focus:ring-violet-500"
-          />
-          <label htmlFor="terms" className="text-sm text-gray-600">
-            I accept the <Link to="/terms" className="text-violet-600 hover:underline font-medium">Terms and Conditions</Link>
-          </label>
+        <div className="pt-2">
+          <div className="flex items-center space-x-2">
+            <input 
+              type="checkbox" id="terms" name="terms"
+              className="w-4 h-4 text-violet-600 border-gray-300 rounded focus:ring-violet-500"
+            />
+            <label htmlFor="terms" className="text-sm text-gray-600">
+              I accept the <Link to="#" className="text-violet-600 hover:underline font-medium">Terms and Conditions</Link>
+            </label>
+          </div>
+          {actionData?.errors?.terms && (
+            <p className="text-red-500 text-xs mt-1">{actionData.errors.terms[0]}</p>
+          )}
         </div>
 
         {/* Submit Button */}
