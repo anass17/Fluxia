@@ -4,13 +4,13 @@ from typing import Literal
 
 
 class RegisterRequest(BaseModel):
-    first_name: str
-    last_name: str
+    first_name: str = Field(..., min_length=2)
+    last_name: str = Field(..., min_length=2)
     email: EmailStr
     password: str = Field(
         ...,
         min_length=8,
-        description="Password must be at least 8 characters"
+        description="Password should have at least 8 characters"
     )
 
 
