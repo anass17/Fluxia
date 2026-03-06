@@ -1,5 +1,6 @@
 export default function ClientRow({ client, fetcher }: { client: any; fetcher: any }) {
   const isBlocked = !client.is_active;
+  const isSubmitting = fetcher.state !== "idle";
 
   return (
     <tr className="hover:bg-slate-50 transition-colors">
@@ -19,12 +20,15 @@ export default function ClientRow({ client, fetcher }: { client: any; fetcher: a
         <fetcher.Form method="post" action={`/admin/clients/${client.id}/toggle-status`}>
           <button 
             type="submit"
-            className={`text-xs font-bold px-4 cursor-pointer py-1.5 rounded-lg border transition-all ${
-              isBlocked ? "border-emerald-200 text-emerald-600 hover:bg-emerald-50" : "border-red-200 text-red-600 hover:bg-red-50"
-            }`}
+            disabled={isSubmitting}
+            className={`text-xs font-bold px-4 cursor-pointer py-1.5 rounded-lg border transition-all 
+              ${isBlocked ? "border-emerald-200 text-emerald-600 hover:bg-emerald-50 " : "border-red-200 text-red-600 hover:bg-red-50 "}
+              ${isSubmitting ? "opacity-50 cursor-not-allowed " : "cursor-pointer "}
+            `}
           >
             {isBlocked ? "Unblock" : "Block"}
           </button>
+          <input type="hidden" name="toggle_status" value={isBlocked ? "Unblock" : "Block"} />
         </fetcher.Form>
       </td>
     </tr>
