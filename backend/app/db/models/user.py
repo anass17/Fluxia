@@ -8,7 +8,7 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
-    role = Column(Enum(EnumRole, name="role_enum"), nullable=False, default="CLIENT")
+    role = Column(Enum(EnumRole, name="role_enum"), nullable=False, default=EnumRole.CLIENT)
     email = Column(String, unique=True, index=True, nullable=False)
     password = Column(String, nullable=False)
     is_active = Column(Boolean, nullable=False, default=True)

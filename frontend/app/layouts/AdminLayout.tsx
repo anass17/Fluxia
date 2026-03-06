@@ -8,8 +8,10 @@ interface HeaderProps {
   onToggleSidebar: () => void;
 }
 
+
+// Secure the routes associated to this layout
 export async function loader({ request }: { request: Request }) {
-    return await requireRole(request, ["ADMIN", "CLIENT"]);
+    return await requireRole(request, ["ADMIN"]);
 }
 
 
@@ -109,7 +111,7 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
     {
       group: "User",
       links: [
-        { name: "Customers", path: "/admin/customers", icon: <CustomersIcon /> },
+        { name: "Customers", path: "/admin/clients", icon: <CustomersIcon /> },
         { name: "Staff Management", path: "/admin/staff", icon: <StaffIcon /> },
       ],
     },

@@ -13,9 +13,9 @@ export async function requireRole(request: Request, allowedRoles: string[]) {
         throw redirect("/login");
     }
 
-    // if (!allowedRoles.includes(role)) {
-    //     throw redirect("/unauthorized");
-    // }
+    if (!allowedRoles.includes(role)) {
+        throw redirect("/unauthorized");
+    }
 
     return {
         user: {

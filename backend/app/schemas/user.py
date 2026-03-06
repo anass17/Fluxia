@@ -1,5 +1,7 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr
 from typing import Literal
+from app.db.enums.role_enum import EnumRole
+from datetime import datetime
 
 
 
@@ -16,5 +18,6 @@ class UserSchema(BaseModel):
     last_name: str
     email: EmailStr
     is_active: bool
-    role: Literal['OWNER', 'ADMIN', 'STUFF', 'CLIENT']
+    role: EnumRole
+    created_at: datetime
 
