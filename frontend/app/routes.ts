@@ -14,5 +14,10 @@ export default [
         route("/admin/clients", "routes/admin/clients.tsx")
     ]),
 
+    // Ressource routes
+    route("/admin/clients/:id/toggle-status", "routes/admin/clients.toggle-status.ts"),
+
+    // Errors
     route("/unauthorized", "routes/errors/unauthorized.tsx")
+
 ] satisfies RouteConfig;
