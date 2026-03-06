@@ -33,7 +33,7 @@ class AuthService:
     
 
 
-    def register_stuff(self, first_name: str, last_name: str, email: str, password: str):
+    def register_staff(self, first_name: str, last_name: str, email: str, password: str):
         existing_user = self.model.get_user_by_email(email)
 
         first_name = first_name.capitalize()
@@ -42,7 +42,7 @@ class AuthService:
         if existing_user:
             return None
 
-        user = self.model.create_user(first_name, last_name, email, hash_password(password), "STUFF")
+        user = self.model.create_user(first_name, last_name, email, hash_password(password), "STAFF")
 
         token = create_access_token({"sub": str(user.id), "role": user.role})
 
@@ -50,7 +50,7 @@ class AuthService:
             "access_token": token,
             "first_name": first_name,
             "last_name": last_name,
-            "role": "STUFF"
+            "role": "STAFF"
         }
     
 

@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr, Field
 from typing import Literal
+from app.db.enums.role_enum import EnumRole
 
 
 
@@ -25,4 +26,4 @@ class AuthResponse(BaseModel):
     access_token: str
     first_name: str
     last_name: str
-    role: Literal['OWNER', 'ADMIN', 'STUFF', 'CLIENT']
+    role: EnumRole

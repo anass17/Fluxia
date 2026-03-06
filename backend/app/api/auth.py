@@ -36,15 +36,15 @@ def register_client(
 
 
 
-# Register Stuff
+# Register Staff
 
-@router.post("/stuff/register", response_model=AuthResponse, status_code=201)
-def register_stuff(
+@router.post("/staff/register", response_model=AuthResponse, status_code=201)
+def register_staff(
     data: RegisterRequest,
     db: Session = Depends(get_db)
 ):
     service = AuthService(db)
-    token = service.register_stuff(
+    token = service.register_staff(
         first_name=data.first_name,
         last_name=data.last_name,
         email=data.email,

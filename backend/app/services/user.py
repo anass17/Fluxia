@@ -22,9 +22,9 @@ class UserService:
     
 
 
-    def get_all_stuffs(self):
-        stuffs = self.model.get_all_stuffs()
-        return stuffs
+    def get_all_staffs(self):
+        staffs = self.model.get_all_staffs()
+        return staffs
     
 
 
@@ -34,13 +34,13 @@ class UserService:
     
 
 
-    def promote_stuff(self, id):
+    def promote_staff(self, id):
         user = self.model.get_user_by_id(id)
 
         if not user:
             raise HTTPException(status.HTTP_404_NOT_FOUND, "User Not Found")
-        elif user.role != "STUFF":
-            raise HTTPException(status.HTTP_400_BAD_REQUEST, "You can only promote stuff members")
+        elif user.role != "STAFF":
+            raise HTTPException(status.HTTP_400_BAD_REQUEST, "You can only promote staff members")
         
         self.model.update_user_role(id, "ADMIN")
 
@@ -52,7 +52,7 @@ class UserService:
     
 
 
-    def demote_stuff(self, id):
+    def demote_staff(self, id):
         user = self.model.get_user_by_id(id)
 
         if not user:
@@ -60,12 +60,12 @@ class UserService:
         elif user.role != "ADMIN":
             raise HTTPException(status.HTTP_400_BAD_REQUEST, "You can only demote admins")
         
-        self.model.update_user_role(id, "STUFF")
+        self.model.update_user_role(id, "STAFF")
 
         return {
             "first_name": user.first_name,
             "last_name": user.last_name,
-            "role": "STUFF"
+            "role": "STAFF"
         }
     
 

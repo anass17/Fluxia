@@ -49,9 +49,9 @@ class UserModel:
     
 
 
-    def get_all_stuffs(self):
-        stuffs = self.db.query(User).filter(User.role == "STUFF").order_by(User.id).all()
-        return stuffs
+    def get_all_staffs(self):
+        staffs = self.db.query(User).filter(User.role == "STAFF").order_by(User.id).all()
+        return staffs
     
 
 

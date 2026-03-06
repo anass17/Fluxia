@@ -9,7 +9,7 @@ from datetime import datetime
 class UserRoleUpdateResponse(BaseModel):
     first_name: str
     last_name: str
-    role: Literal["ADMIN", "STUFF"]
+    role: Literal["ADMIN", "STAFF"]
 
 
 

@@ -34,15 +34,15 @@ def get_all_clients(
 
 
 
-# Get All Stuffs
+# Get All Staffs
 
-@router.get("/stuffs", response_model=list[UserSchema])
-def get_all_stuffs(
+@router.get("/staffs", response_model=list[UserSchema])
+def get_all_staffs(
     db: Session = Depends(get_db)
 ):
     service = UserService(db)
 
-    return service.get_all_stuffs()
+    return service.get_all_staffs()
 
 
 
@@ -58,16 +58,16 @@ def get_all_admins(
 
 
 
-# Promote Stuffs
+# Promote Staffs
 
 @router.put("/promote/{id}")
-def promote_stuff(
+def promote_staff(
     id: int,
     db: Session = Depends(get_db)
 ):
     service = UserService(db)
 
-    return service.promote_stuff(id)
+    return service.promote_staff(id)
 
 
 
@@ -80,7 +80,7 @@ def demote_admin(
 ):
     service = UserService(db)
 
-    return service.demote_stuff(id)
+    return service.demote_staff(id)
 
 
 
