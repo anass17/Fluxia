@@ -112,7 +112,7 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
       group: "User",
       links: [
         { name: "Customers", path: "/admin/clients", icon: <CustomersIcon /> },
-        { name: "Staff Management", path: "/admin/staff", icon: <StaffIcon /> },
+        { name: "Staff Management", path: "/admin/staffs", icon: <StaffIcon /> },
       ],
     },
     {
@@ -126,7 +126,7 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
   return (
     <aside className={`${isCollapsed ? "w-20" : "w-64"} bg-[#0F172A] transition-all duration-300 h-screen flex flex-col`}>
       <div className="h-16 flex items-center px-6 border-b border-slate-800">
-        <span className="text-violet-500 font-black text-xl tracking-tighter">
+        <span className="text-white font-black text-xl tracking-tighter">
           {isCollapsed ? "F." : "FLUXIA"}
         </span>
       </div>

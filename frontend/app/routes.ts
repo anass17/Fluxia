@@ -11,7 +11,8 @@ export default [
 
     layout("layouts/AdminLayout.tsx", [
         route("/dashboard", "routes/admin/dashboard.tsx"),
-        route("/admin/clients", "routes/admin/clients.tsx")
+        route("/admin/clients", "routes/admin/clients.tsx"),
+        route("/admin/staffs", "routes/admin/staffs.tsx"),
     ]),
 
     // Ressource routes
