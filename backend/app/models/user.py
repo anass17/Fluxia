@@ -38,25 +38,25 @@ class UserModel:
 
 
     def get_all_users(self):
-        users = self.db.query(User).all()
+        users = self.db.query(User).order_by(User.id).all()
         return users
     
 
 
     def get_all_clients(self):
-        clients = self.db.query(User).filter(User.role == "CLIENT").all()
+        clients = self.db.query(User).filter(User.role == "CLIENT").order_by(User.id).all()
         return clients
     
 
 
     def get_all_stuffs(self):
-        stuffs = self.db.query(User).filter(User.role == "STUFF").all()
+        stuffs = self.db.query(User).filter(User.role == "STUFF").order_by(User.id).all()
         return stuffs
     
 
 
     def get_all_admins(self):
-        admins = self.db.query(User).filter(User.role == "ADMIN").all()
+        admins = self.db.query(User).filter(User.role == "ADMIN").order_by(User.id).all()
         return admins
     
 
