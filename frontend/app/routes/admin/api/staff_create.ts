@@ -1,5 +1,5 @@
 import type { ActionFunctionArgs } from "react-router";
-import { staffsService } from "~/api/staffs.service";
+import { authService } from "~/api/auth.service";
 import z from "zod"
 
 const staffCreateSchema = z.object({
@@ -21,9 +21,11 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   // Call your API
-//   const res = await staffsService.createStaff(data);
-
-//   if (res.error) return { success: false, error: res.error };
+  try {
+    await authService.registerStaff(data);
+  } catch (err) {
+    return { success: false, error: err };
+  }
   
   return { success: true };
 }
