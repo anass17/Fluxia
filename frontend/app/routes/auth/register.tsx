@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Form, Link, useActionData, useNavigation, redirect } from "react-router";
-import { authService } from "~/services/auth.service";
+import { authService } from "~/api/auth.service";
 import { z } from "zod";
 import { createUserSession } from "~/services/session.server";
 

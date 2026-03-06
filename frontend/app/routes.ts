@@ -6,6 +6,7 @@ export default [
     layout("layouts/AuthLayout.tsx", [
         route("/register", "routes/auth/register.tsx"),
         route("/login", "routes/auth/login.tsx"),
+        route("/logout", "routes/auth/logout.tsx")
     ]),
 
     layout("layouts/AdminLayout.tsx", [

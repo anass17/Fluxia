@@ -1,11 +1,17 @@
 import { useState } from "react";
-import { Form, Link, Outlet, useLocation } from "react-router";
-
+import { Form, Link, Outlet, useLocation, useLoaderData } from "react-router";
+import { LogoutButton } from "~/components/ui/LogoutButton";
+import { requireRole } from "~/services/auth.server";
 
 interface HeaderProps {
   user: { name: string; avatar?: string };
   onToggleSidebar: () => void;
 }
+
+export async function loader({ request }: { request: Request }) {
+    return await requireRole(request, ["ADMIN", "CLIENT"]);
+}
+
 
 function Header({ user, onToggleSidebar }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,7 +42,7 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
 
       {/* Right Section: Actions & Profile */}
       <div className="flex items-center gap-3">
-        <button className="hidden md:flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-sm shadow-violet-200">
+        <button className="hidden md:flex items-center gap-2 cursor-pointer bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-sm shadow-violet-200">
           <PlusIcon />
           <span>Add Staff</span>
         </button>
@@ -52,7 +58,7 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
         <div className="relative">
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex items-center gap-3 p-1 hover:bg-slate-50 rounded-xl transition-all"
+            className="flex items-center gap-3 cursor-pointer p-1 hover:bg-slate-50 rounded-xl transition-all"
           >
             <div className="w-9 h-9 rounded-lg bg-violet-100 border border-violet-200 flex items-center justify-center text-violet-700 font-bold overflow-hidden">
               {user.avatar ? (
@@ -78,12 +84,7 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
                   Settings
                 </Link>
                 <div className="h-[1px] bg-slate-100 my-1 mx-2"></div>
-                <Form method="post" action="/logout">
-                  <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors">
-                    <LogoutIcon />
-                    Logout
-                  </button>
-                </Form>
+                <LogoutButton />
               </div>
             </>
           )}
@@ -227,6 +228,7 @@ const LogoutIcon = () => (
 
 export default function AdminLayout() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { user } = useLoaderData();
 
   const onToggleSidebar = () => {
     setIsCollapsed(!isCollapsed)
@@ -241,7 +243,7 @@ export default function AdminLayout() {
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         
         {/* TOP HEADER */}
-        <Header user={{name: "Anass Boutaib"}} onToggleSidebar={onToggleSidebar} />
+        <Header user={{name: `${user.first_name} ${user.last_name}`}} onToggleSidebar={onToggleSidebar} />
 
         {/* PAGE CONTENT */}
         <main className="flex-1 overflow-y-auto p-8 bg-slate-50">
