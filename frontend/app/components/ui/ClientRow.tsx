@@ -17,7 +17,7 @@ export default function ClientRow({ client, fetcher }: { client: any; fetcher: a
         </span>
       </td>
       <td className="p-4 text-right">
-        <fetcher.Form method="post" action={`/admin/clients/${client.id}/toggle-status`}>
+        <fetcher.Form method="post" action={`/admin/client/${client.id}/toggle-status`}>
           <button 
             type="submit"
             disabled={isSubmitting}

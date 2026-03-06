@@ -16,7 +16,8 @@ export default [
     ]),
 
     // Ressource routes
-    route("/admin/clients/:id/toggle-status", "routes/admin/clients.toggle-status.ts"),
+    route("/admin/client/:id/toggle-status", "routes/admin/api/client_toggle_status.ts"),
+    route("/admin/staff/create", "routes/admin/api/staff_create.ts"),
 
     // Errors
     route("/unauthorized", "routes/errors/unauthorized.tsx")

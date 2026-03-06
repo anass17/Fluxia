@@ -26,7 +26,7 @@ export default function ClientCard({ client, fetcher }: { client: any; fetcher: 
           </div>
         </div>
 
-        <fetcher.Form method="post" action={`/admin/clients/${client.id}/toggle-status`}>
+        <fetcher.Form method="post" action={`/admin/client/${client.id}/toggle-status`}>
           <button 
             type="submit"
             disabled={isSubmitting}

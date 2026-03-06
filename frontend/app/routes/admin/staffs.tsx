@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useFetcher, useLoaderData, Form } from "react-router";
-import { staffsService } from "~/api/staffs.service"; // Assume this exists
+import { staffsService } from "~/api/staffs.service";
 import StaffCard from "~/components/ui/StaffCard";
 import StaffRow from "~/components/ui/StaffRow";
 
@@ -25,8 +25,8 @@ export default function StaffList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   const staff = useLoaderData<Staff[]>();
-  const toggleFetcher = useFetcher(); // For block/unblock
-  const createFetcher = useFetcher(); // For the creation modal
+  const toggleFetcher = useFetcher(); 
+  const createFetcher = useFetcher();
 
   // Close modal when creation is successful
   useEffect(() => {
@@ -102,24 +102,36 @@ export default function StaffList() {
             </div>
             
             <createFetcher.Form method="post" action="/admin/staff/create" className="p-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-500 ml-1">First Name</label>
-                  <input required name="first_name" type="text" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:border-violet-500 outline-none" />
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                        <label className="text-xs font-bold text-slate-500 ml-1">First Name</label>
+                        <input name="first_name" type="text" placeholder="Adam" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:border-violet-500 outline-none" />
+                        {createFetcher.data?.errors?.first_name && (
+                            <p className="text-red-500 text-xs mt-1">{createFetcher.data.errors.first_name[0]}</p>
+                        )}
+                    </div>
+                    <div className="space-y-1">
+                        <label className="text-xs font-bold text-slate-500 ml-1">Last Name</label>
+                        <input name="last_name" type="text" placeholder="Ali" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:border-violet-500 outline-none" />
+                        {createFetcher.data?.errors?.last_name && (
+                            <p className="text-red-500 text-xs mt-1">{createFetcher.data.errors.last_name[0]}</p>
+                        )}
+                    </div>
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-500 ml-1">Last Name</label>
-                  <input required name="last_name" type="text" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:border-violet-500 outline-none" />
+                    <label className="text-xs font-bold text-slate-500 ml-1">Email Address</label>
+                    <input name="email" type="email" placeholder="staff@fluxia.com" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:border-violet-500 outline-none" />
+                    {createFetcher.data?.errors?.email && (
+                        <p className="text-red-500 text-xs mt-1">{createFetcher.data.errors.email[0]}</p>
+                    )}
                 </div>
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-500 ml-1">Email Address</label>
-                <input required name="email" type="email" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:border-violet-500 outline-none" />
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-slate-500 ml-1">Password</label>
-                <input required name="password" type="password" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:border-violet-500 outline-none" />
-              </div>
+                <div className="space-y-1">
+                    <label className="text-xs font-bold text-slate-500 ml-1">Password</label>
+                    <input name="password" type="password" placeholder="••••••••" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:border-violet-500 outline-none" />
+                    {createFetcher.data?.errors?.password && (
+                        <p className="text-red-500 text-xs mt-1">{createFetcher.data.errors.password[0]}</p>
+                    )}
+                </div>
 
               <div className="pt-4 flex gap-3">
                 <button 
