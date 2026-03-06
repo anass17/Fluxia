@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useFetcher, useLoaderData, Form } from "react-router";
-import { staffsService } from "~/api/staffs.service";
+import { usersService } from "~/api/users.service";
 import StaffCard from "~/components/ui/StaffCard";
 import StaffRow from "~/components/ui/StaffRow";
 
@@ -16,7 +16,7 @@ interface Staff {
 }
 
 export async function loader() {
-  return await staffsService.getStaffs();
+  return await usersService.getStaffs();
 }
 
 export default function StaffList() {

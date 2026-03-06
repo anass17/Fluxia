@@ -1,6 +1,6 @@
 import { type ActionFunctionArgs } from "react-router";
 import { requireRole } from "~/services/auth.server";
-import { clientsService } from "~/api/clients.service";
+import { usersService } from "~/api/users.service";
 
 
 export async function action({ request, params }: ActionFunctionArgs) {
@@ -21,9 +21,9 @@ export async function action({ request, params }: ActionFunctionArgs) {
     // Call your API to toggle the status
     try {
         if (data.toggle_status === "Block") {
-            await clientsService.blockUser(+clientId)
+            await usersService.blockUser(+clientId)
         } else if (data.toggle_status === "Unblock") {
-            await clientsService.unblockUser(+clientId)
+            await usersService.unblockUser(+clientId)
         } else {
             return { error: "Failed to update status" };
         }
@@ -31,8 +31,4 @@ export async function action({ request, params }: ActionFunctionArgs) {
     } catch (error) {
         return { error: "Failed to update status" };
     }
-}
-
-export default function d() {
-    return
 }

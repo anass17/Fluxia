@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useFetcher, useLoaderData } from "react-router";
-import { clientsService } from "~/api/clients.service";
+import { usersService } from "~/api/users.service";
 import ClientCard from "~/components/ui/ClientCard";
 import ClientRow from "~/components/ui/ClientRow";
 
@@ -16,7 +16,7 @@ interface Client {
 }
 
 export async function loader({ request }: { request: Request }) {
-    const response = clientsService.getClients()
+    const response = usersService.getClients()
 
     return response
 

@@ -24,8 +24,7 @@ export default function StaffCard({ staff, fetcher }: { staff: any; fetcher: any
         <p className="text-sm text-slate-400 mb-6">{staff.email}</p>
 
         {/* Action Button */}
-        <fetcher.Form method="post" action="/admin/staff/toggle-status" className="w-full">
-          <input type="hidden" name="id" value={staff.id} />
+        <fetcher.Form method="post" action={`/admin/user/${staff.id}/toggle-status`} className="w-full">
           <button 
             type="submit"
             disabled={isSubmitting}
@@ -41,6 +40,7 @@ export default function StaffCard({ staff, fetcher }: { staff: any; fetcher: any
               active ? "Deactivate" : "Activate"
             )}
           </button>
+          <input type="hidden" name="toggle_status" value={!active ? "Unblock" : "Block"} />
         </fetcher.Form>
       </div>
     </div>

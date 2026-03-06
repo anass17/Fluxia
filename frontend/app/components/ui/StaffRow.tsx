@@ -22,8 +22,7 @@ export default function StaffRow({ staff, fetcher }: { staff: any; fetcher: any 
         </span>
       </td>
       <td className="p-4 text-right">
-        <fetcher.Form method="post" action="/admin/staff/toggle-status">
-          <input type="hidden" name="id" value={staff.id} />
+        <fetcher.Form method="post" action={`/admin/user/${staff.id}/toggle-status`}>
           <button 
             type="submit"
             disabled={isSubmitting}
@@ -35,6 +34,7 @@ export default function StaffRow({ staff, fetcher }: { staff: any; fetcher: any 
           >
             {isSubmitting ? "..." : (active ? "Deactivate" : "Activate")}
           </button>
+          <input type="hidden" name="toggle_status" value={!active ? "Unblock" : "Block"} />
         </fetcher.Form>
       </td>
     </tr>

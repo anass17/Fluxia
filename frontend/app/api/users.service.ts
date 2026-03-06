@@ -1,6 +1,6 @@
 import { apiFetch } from "./index";
 
-export const clientsService = {
+export const usersService = {
   getClients: () => 
     apiFetch("/users/clients", { method: "GET" }),
 
@@ -9,5 +9,8 @@ export const clientsService = {
 
   unblockUser: (id: number) => 
     apiFetch(`/users/unblock/${id}`, { method: "PUT" }),
+
+  getStaffs: () => 
+    apiFetch("/users/staffs", { method: "GET" }),
 
 };
