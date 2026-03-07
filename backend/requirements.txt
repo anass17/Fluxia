@@ -3,13 +3,14 @@ uvicorn[standard]
 pydantic[Email]
 numpy
 # torch                   # inference in backend
-opencv-python
+opencv-python-headless
 sqlalchemy
 pydantic-settings
 python-dotenv
 psycopg2-binary
 python-jose[cryptography]
 passlib[bcrypt]
+ultralytics
 # pytest
 # pytest-mock
 # requests-mock

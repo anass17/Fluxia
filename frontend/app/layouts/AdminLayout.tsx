@@ -15,6 +15,36 @@ export async function loader({ request }: { request: Request }) {
 }
 
 
+export default function AdminLayout() {
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const { user } = useLoaderData();
+
+  const onToggleSidebar = () => {
+    setIsCollapsed(!isCollapsed)
+  }
+
+  return (
+    <div className="flex h-screen bg-[#F8FAFC] text-slate-700 overflow-hidden">
+      {/* SIDEBAR */}
+        <Sidebar isCollapsed={isCollapsed} />
+
+      {/* MAIN CONTENT AREA */}
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        
+        {/* TOP HEADER */}
+        <Header user={{name: `${user.first_name} ${user.last_name}`}} onToggleSidebar={onToggleSidebar} />
+
+        {/* PAGE CONTENT */}
+        <main className="flex-1 overflow-y-auto p-8 bg-slate-50">
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  );
+}
+
+
+
 function Header({ user, onToggleSidebar }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -226,32 +256,3 @@ const SettingsIcon = () => (
 const LogoutIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
 );
-
-
-export default function AdminLayout() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const { user } = useLoaderData();
-
-  const onToggleSidebar = () => {
-    setIsCollapsed(!isCollapsed)
-  }
-
-  return (
-    <div className="flex h-screen bg-[#F8FAFC] text-slate-700 overflow-hidden">
-      {/* SIDEBAR */}
-        <Sidebar isCollapsed={isCollapsed} />
-
-      {/* MAIN CONTENT AREA */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        
-        {/* TOP HEADER */}
-        <Header user={{name: `${user.first_name} ${user.last_name}`}} onToggleSidebar={onToggleSidebar} />
-
-        {/* PAGE CONTENT */}
-        <main className="flex-1 overflow-y-auto p-8 bg-slate-50">
-          <Outlet />
-        </main>
-      </div>
-    </div>
-  );
-}
