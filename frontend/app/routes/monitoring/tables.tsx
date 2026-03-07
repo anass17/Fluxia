@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-type TableStatus = "Free" | "Occupied" | "Need Cleaning" | "Awaiting";
+type TableStatus = "free" | "occupied" | "need cleaning" | "awaiting";
 
 interface Table {
   id: string;
@@ -91,10 +91,10 @@ export default function TableMonitoring() {
 
 function TableCard({ table }: { table: Table }) {
   const statusColors: Record<TableStatus, string> = {
-    "Free": "bg-emerald-50 text-emerald-600 border-emerald-100",
-    "Occupied": "bg-blue-50 text-blue-600 border-blue-100",
-    "Need Cleaning": "bg-amber-50 text-amber-600 border-amber-100",
-    "Awaiting": "bg-violet-50 text-violet-600 border-violet-100"
+    "free": "bg-emerald-50 text-emerald-600 border-emerald-100",
+    "occupied": "bg-blue-50 text-blue-600 border-blue-100",
+    "need cleaning": "bg-amber-50 text-amber-600 border-amber-100",
+    "awaiting": "bg-violet-50 text-violet-600 border-violet-100"
   };
 
   return (
@@ -109,18 +109,16 @@ function TableCard({ table }: { table: Table }) {
         </span>
       </div>
 
-      {(table.status === "Occupied" || table.status === "Awaiting") && (
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="bg-slate-50 p-2 rounded-xl">
-            <p className="text-[9px] font-bold text-slate-400 uppercase">Occupation</p>
-            <p className="text-sm font-bold text-slate-700">{table.occupationTime}</p>
-          </div>
-          <div className="bg-slate-50 p-2 rounded-xl">
-            <p className="text-[9px] font-bold text-slate-400 uppercase">Wait Est.</p>
-            <p className="text-sm font-bold text-violet-600">{table.estimatedWait}</p>
-          </div>
+      <div className="grid grid-cols-2 gap-3 mb-4">
+        <div className="bg-slate-50 p-2 rounded-xl">
+          <p className="text-[9px] font-bold text-slate-400 uppercase">Occupation</p>
+          <p className="text-sm font-bold text-slate-700">{table.occupationTime || 0}</p>
         </div>
-      )}
+        <div className="bg-slate-50 p-2 rounded-xl">
+          <p className="text-[9px] font-bold text-slate-400 uppercase">Wait Est.</p>
+          <p className="text-sm font-bold text-violet-600">{table.estimatedWait || 0}</p>
+        </div>
+      </div>
 
       <button className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2">
         View Order Details
