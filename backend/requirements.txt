@@ -2,14 +2,15 @@ fastapi
 uvicorn[standard]
 pydantic[Email]
 numpy
-# torch                   # inference in backend
-opencv-python-headless
+opencv-python
 sqlalchemy
 pydantic-settings
 python-dotenv
 psycopg2-binary
 python-jose[cryptography]
 passlib[bcrypt]
+torch
+torchvision
 ultralytics
 # pytest
 # pytest-mock
