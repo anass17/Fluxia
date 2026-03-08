@@ -47,15 +47,10 @@ export default function TableMonitoring() {
           </span>
         </div>
 
-        {/* AI Scanning Animation Overlay */}
-        <div className="absolute inset-0 z-10 pointer-events-none border-[1px] border-violet-500/20 rounded-3xl">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-violet-500 to-transparent animate-scan shadow-[0_0_15px_rgba(139,92,246,0.5)]" />
-        </div>
-
         {/* The Actual Video Element */}
         <div className="flex-1 bg-black rounded-3xl h-full overflow-hidden relative">
           {frame ? (
-            <img src={frame} className="w-full h-full object-cover" alt="AI Feed" />
+            <img src={frame} className="w-full h-full object-contain" alt="AI Feed" />
           ) : (
             <>
               <div className="flex items-end justify-center h-full text-white py-5">Connecting...</div>
@@ -112,7 +107,7 @@ function TableCard({ table }: { table: Table }) {
       <div className="grid grid-cols-2 gap-3 mb-4">
         <div className="bg-slate-50 p-2 rounded-xl">
           <p className="text-[9px] font-bold text-slate-400 uppercase">Occupation</p>
-          <p className="text-sm font-bold text-slate-700">{table.occupationTime || 0}</p>
+          <p className="text-sm font-bold text-slate-700">{table.occupationTime || 0} s</p>
         </div>
         <div className="bg-slate-50 p-2 rounded-xl">
           <p className="text-[9px] font-bold text-slate-400 uppercase">Wait Est.</p>

@@ -3,7 +3,7 @@ import torch.nn as nn
 
 def prepare_resnet(device, state_dict, img_size, norm_mean, norm_std):
 
-    classifier = models.resnet18(pretrained=False)
+    classifier = models.resnet18(weights=None)
 
     num_features = classifier.fc.in_features
     classifier.fc = nn.Linear(num_features, 4)
@@ -23,5 +23,5 @@ def prepare_resnet(device, state_dict, img_size, norm_mean, norm_std):
             norm_std
         )
     ])
-    
+
     return classifier, transform

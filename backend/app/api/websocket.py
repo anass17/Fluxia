@@ -7,11 +7,12 @@ from PIL import Image
 from random import choice
 import torch
 from app.utils.resnet import prepare_resnet
-# import asyncio
+import time
+import asyncio
 
 router = APIRouter(prefix='/ws', tags=['Websocket'])
 
-VIDEO_SOURCE = "/app/data/detection_camera.mp4"
+VIDEO_DIR = "/app/data/test_videos/"
 MODEL_DIR = Path('/app/ai_models')
 yolo_model = YOLO(MODEL_DIR / "best.pt")
 class_names = torch.load(MODEL_DIR / "class_names.pth")
@@ -31,11 +32,22 @@ classifier, transform = prepare_resnet(DEVICE, state_dict, IMG_SIZE, NORMALIZE_M
 @router.websocket("/vision")
 async def vision_stream(websocket: WebSocket):
     await websocket.accept()
+
+    VIDEO_SOURCE = choice(list(Path(VIDEO_DIR).glob("*")))
     
     cap = cv2.VideoCapture(VIDEO_SOURCE)
 
     boxes = None
     
+    occupancy_timers = {}
+
+    colors = {
+        "occupied": (225, 113, 0),
+        "need cleaning": (21, 93, 252),
+        "free": (0,  153, 102),
+        "awaiting": (127, 34, 254),
+    }
+
     try:
         while True:
             ret, frame = cap.read()
@@ -85,28 +97,43 @@ async def vision_stream(websocket: WebSocket):
                         outputs = classifier(input_tensor)
                         _, predicted_class = torch.max(outputs, 1)
 
-                    label: str = class_names[predicted_class.item()]
+                    label: str = class_names[predicted_class.item()].replace("_", " ")
 
-                    label = label.replace("_", " ")
+                    table_id = ind + 1
 
-                    # label = "test"
-
-                    colors = {
-                        "occupied": (225, 113, 0),
-                        "need cleaning": (21, 93, 252),
-                        "free": (0,  153, 102),
-                        "awaiting": (127, 34, 254),
-                    }
+                    # Table occupancy timer
+                    duration = 0
+                    if label == "occupied":
+                        # If it wasn't occupied before, start the timer
+                        if table_id not in occupancy_timers:
+                            occupancy_timers[table_id] = time.time()
+                        
+                        # Calculate how long it has been occupied
+                        duration = int(time.time() - occupancy_timers[table_id])
+                    else:
+                        # If the table is free or awaiting, reset the timer
+                        occupancy_timers.pop(table_id, None)
                     
 
                     # Draw on frame
                     cv2.rectangle(frame, (x1, y1), (x2, y2), colors[label], 2)
+
+                    cv2.putText(
+                        frame,
+                        str(ind + 1) + ".",
+                        (x1, y1 - 3),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.5,
+                        (127, 34, 254),
+                        2
+                    )
                     
 
                     tables_data.append({
                         "id": str(len(tables_data)),
                         "number": len(tables_data) + 1,
                         "status": label,
+                        "occupationTime": duration,
                         "box": [x1, y1, x2, y2]
                     })
 
@@ -128,7 +155,7 @@ async def vision_stream(websocket: WebSocket):
                 "image": frame_base64,
                 "tables": tables_data
             })
-            # await asyncio.sleep(0.01) # 10ms sleep to prevent CPU pegging
+            await asyncio.sleep(0.1) # 10ms sleep to prevent CPU pegging
             
     except Exception as e:
         print(f"Websocket error: {e}")
