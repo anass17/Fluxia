@@ -25,10 +25,10 @@ export async function createUserSession(userData: any, request: Request) {
   session.set("last_name", userData.last_name);
   session.set("role", userData.role);
 
-  let redirectTo = "/client/dashboard";
+  let redirectTo = "/dashboard";
   
   if (userData.role === "ADMIN") {
-    redirectTo = "/dashboard";
+    redirectTo = "/admin/dashboard";
   } else if (userData.role === "STUFF") {
     redirectTo = "/stuff/dashboard";
   }

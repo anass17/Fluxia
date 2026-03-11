@@ -9,11 +9,18 @@ export default [
         route("/logout", "routes/auth/logout.tsx")
     ]),
 
+    // Admin Routes
     layout("layouts/AdminLayout.tsx", [
-        route("/dashboard", "routes/admin/dashboard.tsx"),
+        route("/admin/dashboard", "routes/admin/dashboard.tsx"),
         route("/admin/clients", "routes/admin/clients.tsx"),
         route("/admin/staffs", "routes/admin/staffs.tsx"),
         route("/admin/tables", "routes/monitoring/tables.tsx"),
+    ]),
+
+    // User Routes
+    layout("layouts/ClientLayout.tsx", [
+        route("/dashboard", "routes/client/dashboard.tsx"),
+        route("/reservation", "routes/client/reservation.tsx"),
     ]),
 
     // Ressource routes

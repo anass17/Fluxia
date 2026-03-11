@@ -9,13 +9,12 @@ interface HeaderProps {
 }
 
 
-// Secure the routes associated to this layout
 export async function loader({ request }: { request: Request }) {
-    return await requireRole(request, ["ADMIN"]);
+    return await requireRole(request, ["CLIENT"]);
 }
 
 
-export default function AdminLayout() {
+export default function ClientLayout() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const { user } = useLoaderData();
 
@@ -74,10 +73,6 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
 
       {/* Right Section: Actions & Profile */}
       <div className="flex items-center gap-3">
-        <button className="hidden md:flex items-center gap-2 cursor-pointer bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-sm shadow-violet-200">
-          <PlusIcon />
-          <span>Add Staff</span>
-        </button>
 
         <button className="p-2 text-slate-500 hover:bg-slate-100 rounded-lg relative">
           <BellIcon />
@@ -101,7 +96,6 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
             </div>
             <div className="hidden lg:block text-left">
               <p className="text-sm font-bold text-slate-700 leading-none">{user.name}</p>
-              <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-wider font-semibold">Administrator</p>
             </div>
             <ChevronDownIcon />
           </button>
@@ -134,7 +128,6 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
       group: "Main",
       links: [
         { name: "Overview", path: "/admin", icon: <OverviewIcon /> },
-        { name: "Tables Monitoring", path: "/admin/tables", icon: <TableIcon /> },
         { name: "Calendar", path: "/admin/calendar", icon: <CalendarIcon /> },
       ],
     },
@@ -144,14 +137,7 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
         { name: "Reservations", path: "/admin/reservations", icon: <ReservationIcon /> },
         { name: "Orders", path: "/admin/orders", icon: <OrdersIcon /> },
       ],
-    },
-    {
-      group: "Users",
-      links: [
-        { name: "Customers", path: "/admin/clients", icon: <CustomersIcon /> },
-        { name: "Staff Management", path: "/admin/staffs", icon: <StaffIcon /> },
-      ],
-    },
+    }
   ];
 
   return (
