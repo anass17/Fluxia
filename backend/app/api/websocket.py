@@ -6,8 +6,10 @@ import base64
 from PIL import Image
 from random import choice
 import torch
+from app.utils.sort import Sort
 from app.utils.resnet import prepare_resnet
 import time
+import numpy as np
 import asyncio
 
 router = APIRouter(prefix='/ws', tags=['Websocket'])
@@ -28,6 +30,8 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 classifier, transform = prepare_resnet(DEVICE, state_dict, IMG_SIZE, NORMALIZE_MEAN, NORMALIZE_STD)
 
 
+FRAMES_SKIP = 2
+
 
 @router.websocket("/vision")
 async def vision_stream(websocket: WebSocket):
@@ -37,9 +41,11 @@ async def vision_stream(websocket: WebSocket):
     
     cap = cv2.VideoCapture(VIDEO_SOURCE)
 
-    boxes = None
-    
+    # Initialize tracker
+    tracker = Sort()
+
     occupancy_timers = {}
+    occupancy_stopped_timers = {}
 
     colors = {
         "occupied": (225, 113, 0),
@@ -54,19 +60,40 @@ async def vision_stream(websocket: WebSocket):
             if not ret: break
 
             tables_data = []
+            detections = []
 
             h, w = frame.shape[:2]
             
             ### YOLO Detection
-            # results = yolo_model(frame, conf=0.5)
+            results = yolo_model(frame, conf=0.5)
+
+            for box in results[0].boxes:
+                x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
+                score = box.conf[0].cpu().numpy()
+
+                detections.append([x1, y1, x2, y2, score])
+
+            detections = np.array(detections)
+
+            if len(detections) > 0:
+                detections_array = np.array(detections)
+                tracked_objects = tracker.update(detections_array)
+            else:
+                # Tell tracker no objects seen to maintain internal state
+                tracked_objects = tracker.update(np.empty((0, 5)))
 
             # if len(results[0].boxes) > 0:
             #     boxes = results[0].boxes
+            #     tracked_objects = tracker.update(boxes)
 
-            if boxes is not None:
 
-                for ind, box in enumerate(boxes):
-                    x1, y1, x2, y2 = map(int, box.xyxy[0])
+            if tracked_objects is not None:
+
+                for obj in tracked_objects:
+                    # x1, y1, x2, y2 = map(int, box.xyxy[0])
+
+                    x1, y1, x2, y2, track_id = map(int, obj)
+                    track_id = int(track_id)
 
                     # Crop Image
                     crop = frame[y1:y2, x1:x2]
@@ -99,20 +126,35 @@ async def vision_stream(websocket: WebSocket):
 
                     label: str = class_names[predicted_class.item()].replace("_", " ")
 
-                    table_id = ind + 1
+                    # table_id = ind + 1
+                    table_id = track_id
 
                     # Table occupancy timer
                     duration = 0
                     if label == "occupied":
+
+                        if table_id in occupancy_stopped_timers:
+                            duration = occupancy_stopped_timers[table_id]
+
                         # If it wasn't occupied before, start the timer
                         if table_id not in occupancy_timers:
-                            occupancy_timers[table_id] = time.time()
+                            occupancy_timers[table_id] = time.time() - duration
                         
                         # Calculate how long it has been occupied
                         duration = int(time.time() - occupancy_timers[table_id])
-                    else:
-                        # If the table is free or awaiting, reset the timer
+                    elif label == "free":
+                        # If the table is free, reset the timer
                         occupancy_timers.pop(table_id, None)
+                        occupancy_stopped_timers.pop(table_id, None)
+                    else:
+                        if table_id in occupancy_timers:
+                            duration = int(time.time() - occupancy_timers[table_id])
+                            occupancy_stopped_timers[table_id] = duration
+                            occupancy_timers.pop(table_id, None)
+                        elif table_id in occupancy_stopped_timers:
+                            duration = occupancy_stopped_timers[table_id]
+
+
                     
 
                     # Draw on frame
@@ -120,7 +162,7 @@ async def vision_stream(websocket: WebSocket):
 
                     cv2.putText(
                         frame,
-                        str(ind + 1) + ".",
+                        str(table_id) + ".",
                         (x1, y1 - 3),
                         cv2.FONT_HERSHEY_SIMPLEX,
                         0.5,
@@ -130,20 +172,20 @@ async def vision_stream(websocket: WebSocket):
                     
 
                     tables_data.append({
-                        "id": str(len(tables_data)),
+                        "id": track_id,
                         "number": len(tables_data) + 1,
                         "status": label,
                         "occupationTime": duration,
                         "box": [x1, y1, x2, y2]
                     })
 
-            else:
+            # else:
 
-                # YOLO Detection
-                results = yolo_model(frame, conf=0.5)
+            #     # YOLO Detection
+            #     results = yolo_model(frame, conf=0.5)
 
-                if len(results[0].boxes) > 0:
-                    boxes = results[0].boxes
+            #     if len(results[0].boxes) > 0:
+            #         boxes = results[0].boxes
 
 
             # Encode frame to Base64
@@ -155,7 +197,8 @@ async def vision_stream(websocket: WebSocket):
                 "image": frame_base64,
                 "tables": tables_data
             })
-            await asyncio.sleep(0.1) # 10ms sleep to prevent CPU pegging
+
+            await asyncio.sleep(0.01) # 10ms sleep to prevent CPU pegging
             
     except Exception as e:
         print(f"Websocket error: {e}")

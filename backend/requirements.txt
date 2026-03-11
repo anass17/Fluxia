@@ -12,6 +12,8 @@ passlib[bcrypt]
 torch
 torchvision
 ultralytics
+scikit-image
+filterpy
 # pytest
 # pytest-mock
 # requests-mock
