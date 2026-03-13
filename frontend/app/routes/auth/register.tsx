@@ -38,7 +38,7 @@ export async function action({ request }: any) {
   }
 
   try {
-    const response = await authService.register(data);
+    const response = await authService.register(request, data);
     
     return createUserSession(response, request)
 

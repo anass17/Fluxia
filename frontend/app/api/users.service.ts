@@ -1,16 +1,16 @@
 import { apiFetch } from "./index";
 
 export const usersService = {
-  getClients: () => 
-    apiFetch("/users/clients", { method: "GET" }),
+  getClients: (request: Request) => 
+    apiFetch(request, "/users/clients", { method: "GET" }),
 
-  blockUser: (id: number) => 
-    apiFetch(`/users/block/${id}`, { method: "PUT" }),
+  blockUser: (request: Request, id: number) => 
+    apiFetch(request, `/users/block/${id}`, { method: "PUT" }),
 
-  unblockUser: (id: number) => 
-    apiFetch(`/users/unblock/${id}`, { method: "PUT" }),
+  unblockUser: (request: Request, id: number) => 
+    apiFetch(request, `/users/unblock/${id}`, { method: "PUT" }),
 
-  getStaffs: () => 
-    apiFetch("/users/staffs", { method: "GET" }),
+  getStaffs: (request: Request) => 
+    apiFetch(request, "/users/staffs", { method: "GET" }),
 
 };

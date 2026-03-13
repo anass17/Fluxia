@@ -16,7 +16,7 @@ interface Client {
 }
 
 export async function loader({ request }: { request: Request }) {
-    const response = usersService.getClients()
+    const response = usersService.getClients(request)
 
     return response
 

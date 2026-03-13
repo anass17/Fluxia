@@ -15,8 +15,8 @@ interface Staff {
   avatar?: string;
 }
 
-export async function loader() {
-  return await usersService.getStaffs();
+export async function loader({ request }: { request: Request }) {
+  return await usersService.getStaffs(request);
 }
 
 export default function StaffList() {

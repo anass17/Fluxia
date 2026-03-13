@@ -1,13 +1,15 @@
+import { getSession } from "~/services/session.server";
+
 const BASE_URL = "http://backend:8000";
 
-export const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
+export const apiFetch = async (request: Request, endpoint: string, options: RequestInit = {}) => {
 
-    let token
-    
-    try {
-        token = localStorage.getItem("fluxia_token");
-    } catch {
-        token = null
+    const session = await getSession(request.headers.get("Cookie"));
+
+    let token = null
+
+    if (session){
+        token = session.get("access_token");
     }
     
     const defaultHeaders = {

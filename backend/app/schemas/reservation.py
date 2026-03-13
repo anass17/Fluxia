@@ -11,11 +11,11 @@ class CreateReservationSchema(BaseModel):
     time: str
     guests: int
     note: str
-    user_id: int
 
 
 
 class ReservationSchema(CreateReservationSchema):
     id: int
     status: EnumReservationStatus
+    user_id: int
     created_at: datetime

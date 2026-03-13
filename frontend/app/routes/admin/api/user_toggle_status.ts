@@ -21,9 +21,9 @@ export async function action({ request, params }: ActionFunctionArgs) {
     // Call your API to toggle the status
     try {
         if (data.toggle_status === "Block") {
-            await usersService.blockUser(+clientId)
+            await usersService.blockUser(request, +clientId)
         } else if (data.toggle_status === "Unblock") {
-            await usersService.unblockUser(+clientId)
+            await usersService.unblockUser(request, +clientId)
         } else {
             return { error: "Failed to update status" };
         }

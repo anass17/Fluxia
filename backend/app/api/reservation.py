@@ -15,7 +15,7 @@ router = APIRouter(prefix='/reservations', tags=['Reservations'])
 @router.get("", response_model=ReservationSchema)
 def get_all_reservations(
     db: Session = Depends(get_db),
-    user_id = Depends(get_current_user)
+    user_id = Depends(require_roles(["CLIENT"]))
 ):
     service = ReservationService(db)
 
@@ -33,11 +33,12 @@ def get_all_reservations(
 
 
 
-@router.post("", response_model=list[ReservationSchema])
+@router.post("", response_model=ReservationSchema)
 def get_all_reservations_by_user(
     data: CreateReservationSchema,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("CLIENT"))
 ):
     service = ReservationService(db)
 
-    return service.create_reservation(**data.model_dump())
+    return service.create_reservation(**data.model_dump(), user_id=user_id)

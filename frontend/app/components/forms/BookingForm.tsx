@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Form, useActionData, useNavigation } from "react-router";
+import { useFetcher } from "react-router";
 
 
 export default function BookingForm({ tableId, onBack }: { tableId: string; onBack: () => void }) {
     const [date, setDate] = useState("");
-    const [selectedTime, setSelectedTime] = useState<string | null>(null);
+    const [selectedTime, setSelectedTime] = useState<string>("");
     const [people, setPeople] = useState(2);
-    const actionData = useActionData();
-    const navigation = useNavigation();
+    const fetcher = useFetcher()
 
-    const isSubmitting = navigation.state === "submitting";
-    const isSuccess = actionData?.success;
+    const isSubmitting = fetcher.state === "submitting";
+    const isSuccess = fetcher.data?.success;
+    const error = fetcher.data?.error;
 
     // Slots
     const timeSlots = [
@@ -36,7 +36,7 @@ export default function BookingForm({ tableId, onBack }: { tableId: string; onBa
     }
 
     return (
-        <Form method="post" className="space-y-6 animate-in slide-in-from-right-4 duration-300">
+        <fetcher.Form method="POST" action={`/reservation/create`} className="space-y-6 animate-in slide-in-from-right-4 duration-300">
             <button onClick={onBack} className="text-xs font-bold text-slate-400 flex items-center gap-1 hover:text-slate-900 mb-2">
                 ← Back to Map
             </button>
@@ -46,13 +46,14 @@ export default function BookingForm({ tableId, onBack }: { tableId: string; onBa
                 <p className="text-xs text-slate-500 uppercase font-bold tracking-widest mt-1">Booking Configuration</p>
             </div>
 
-            <input type="hidden" name="table_id" value={tableId} />
+            <input type="hidden" name="table_number" value={tableId} />
 
             {/* Date Picker */}
             <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Select Date</label>
                 <input 
-                type="date" 
+                type="date"
+                name="date" 
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 style={{ colorScheme: 'light' }}
@@ -63,26 +64,28 @@ export default function BookingForm({ tableId, onBack }: { tableId: string; onBa
             {/* Time Slots */}
             {date && (
                 <div className="space-y-3">
-                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Available Slots (50min)</label>
-                <div className="grid grid-cols-3 gap-2">
-                    {timeSlots.map((time) => {
-                    const isReserved = reservedSlots.includes(time);
-                    return (
-                        <button
-                        key={time}
-                        disabled={isReserved}
-                        onClick={() => setSelectedTime(time)}
-                        className={`py-2.5 rounded-xl text-[10px] font-black transition-all border
-                            ${isReserved ? "bg-rose-50 border-rose-100 text-rose-300 cursor-not-allowed" : 
-                            selectedTime === time ? "bg-slate-900 border-slate-900 text-white shadow-md" : 
-                            "bg-white border-slate-100 text-slate-600 hover:border-slate-300"}
-                        `}
-                        >
-                        {time}
-                        </button>
-                    );
-                    })}
-                </div>
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Available Slots (50min)</label>
+                    <div className="grid grid-cols-3 gap-2">
+                        {timeSlots.map((time) => {
+                        const isReserved = reservedSlots.includes(time);
+                        return (
+                            <button
+                                key={time}
+                                type="button"
+                                disabled={isReserved}
+                                onClick={() => setSelectedTime(time)}
+                                className={`py-2.5 rounded-xl text-[10px] font-black transition-all border 
+                                    ${isReserved ? " bg-rose-50 border-rose-100 text-rose-300 cursor-not-allowed" : 
+                                    selectedTime === time ? " bg-slate-900 border-slate-900 text-white shadow-md" : 
+                                    " bg-white border-slate-100 text-slate-600 hover:border-slate-300"}
+                                `}
+                            >
+                                {time}
+                            </button>
+                        );
+                        })}
+                    </div>
+                    <input type="hidden" name="time" value={selectedTime} />
                 </div>
             )}
 
@@ -93,6 +96,7 @@ export default function BookingForm({ tableId, onBack }: { tableId: string; onBa
                 {[1, 2, 3, 4].map((num) => (
                     <button
                     key={num}
+                    type="button"
                     onClick={() => setPeople(num)}
                     className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${people === num ? "bg-white text-slate-900 shadow-sm" : "text-slate-400"}`}
                     >
@@ -100,14 +104,16 @@ export default function BookingForm({ tableId, onBack }: { tableId: string; onBa
                     </button>
                 ))}
                 </div>
+                <input type="hidden" name="guests" value={people} />
             </div>
 
             {/* Description */}
             <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Special Notes</label>
                 <textarea 
-                placeholder="e.g. Birthday, window seat preference..."
-                className="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm min-h-[80px] focus:ring-2 focus:ring-slate-900"
+                    name="note"
+                    placeholder="e.g. Birthday, window seat preference..."
+                    className="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm min-h-[80px] focus:ring-2 focus:ring-slate-900"
                 />
             </div>
 
@@ -121,9 +127,9 @@ export default function BookingForm({ tableId, onBack }: { tableId: string; onBa
                 ) : "Confirm Reservation"}
             </button>
 
-            {actionData?.error && (
-                <p className="text-rose-500 text-xs font-bold text-center">{actionData.error}</p>
+            {error && (
+                <p className="text-rose-500 text-xs font-bold text-center">{error}</p>
             )}
-        </Form>
+        </fetcher.Form>
     );
 }

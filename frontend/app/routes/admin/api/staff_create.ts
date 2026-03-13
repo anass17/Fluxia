@@ -20,9 +20,8 @@ export async function action({ request }: ActionFunctionArgs) {
     return { errors: result.error.flatten().fieldErrors };
   }
 
-  // Call your API
   try {
-    await authService.registerStaff(data);
+    await authService.registerStaff(request, data);
   } catch (err) {
     return { success: false, error: err };
   }

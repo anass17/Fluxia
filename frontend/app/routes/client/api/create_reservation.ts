@@ -1,19 +1,16 @@
-import { redirect, type ActionFunctionArgs } from "react-router";
+import { type ActionFunctionArgs } from "react-router";
+import { reservationsService } from "~/api/reservations.service";
 
 
 export async function action({ request } : ActionFunctionArgs) {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
 
-  const response = await fetch("http://localhost:8000/api/reservations", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    return { error: "Could not create reservation" }
-  }
-
-  return { success: true }
+    try {
+      await reservationsService.createReservation(request, data);
+    } catch (err) {
+      return { success: false, error: err };
+    }
+    
+    return { success: true };
 }

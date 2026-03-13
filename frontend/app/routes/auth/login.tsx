@@ -22,7 +22,7 @@ export async function action({ request }: { request: Request }) {
   }
 
   try {
-    const response = await authService.login(result.data);
+    const response = await authService.login(request, result.data);
 
     return createUserSession(response, request)
 
