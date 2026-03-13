@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { SearchIcon, PlusIcon, ChevronDownIcon } from '../../utils/icons';
 import { type ReservationStatus, type Reservation } from '../../utils/types';
 import ReservationDetailsModal from "~/components/modals/ReservationDetailsModal";
+import NewReservationModal from "~/components/modals/NewReservationModal";
 
 
 export default function ReservationsPage() {
@@ -9,6 +10,7 @@ export default function ReservationsPage() {
   const [statusFilter, setStatusFilter] = useState<ReservationStatus | "All">("All");
   const [sortBy, setSortBy] = useState<"date" | "price">("date");
   const [selectedRes, setSelectedRes] = useState<Reservation | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Initial Data
   const initialReservations: Reservation[] = [
@@ -42,7 +44,9 @@ export default function ReservationsPage() {
           <p className="text-slate-500 font-medium">History and guest booking logs</p>
         </div>
         
-        <button className="flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all active:scale-95 shadow-lg shadow-slate-200">
+        <button 
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all active:scale-95 shadow-lg shadow-slate-200">
           <PlusIcon />
           Book New Reservation
         </button>
@@ -144,6 +148,10 @@ export default function ReservationsPage() {
           reservation={selectedRes} 
           onClose={() => setSelectedRes(null)} 
         />
+      )}
+
+      {isModalOpen && (
+        <NewReservationModal onClose={() => setIsModalOpen(false)} />
       )}
     </div>
   );

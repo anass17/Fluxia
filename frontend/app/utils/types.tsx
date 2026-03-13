@@ -8,3 +8,11 @@ export interface Reservation {
   status: ReservationStatus;
   hasOrder: boolean;
 }
+
+export interface TablePosition {
+  id: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
