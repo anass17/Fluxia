@@ -127,15 +127,15 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
     {
       group: "Main",
       links: [
-        { name: "Overview", path: "/admin", icon: <OverviewIcon /> },
-        { name: "Calendar", path: "/admin/calendar", icon: <CalendarIcon /> },
+        { name: "Overview", path: "/dashboard", icon: <OverviewIcon /> },
+        { name: "Calendar", path: "/calendar", icon: <CalendarIcon /> },
       ],
     },
     {
       group: "Management",
       links: [
-        { name: "Reservations", path: "/admin/reservations", icon: <ReservationIcon /> },
-        { name: "Orders", path: "/admin/orders", icon: <OrdersIcon /> },
+        { name: "Reservations", path: "/reservation", icon: <ReservationIcon /> },
+        { name: "Orders", path: "/orders", icon: <OrdersIcon /> },
       ],
     }
   ];

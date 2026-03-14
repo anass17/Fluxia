@@ -3,7 +3,7 @@ import StatusBadge from '../badges/StatusBadge';
 
 
 type props = {
-    reservations: Reservation[]
+    reservations: Reservation[] | undefined
     setSelectedRes: (p: any) => void
 }
 
@@ -23,14 +23,14 @@ export default function ReservationsTable({reservations, setSelectedRes}: props)
                 </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
-                {reservations.map((res) => {
+                {reservations?.map((res) => {
                     const dateObj = new Date(res.date);
                     
                     return (
                     <tr key={res.id} className="group hover:bg-slate-50/50 transition-colors">
                         {/* ID Column */}
                         <td className="pl-8 pr-4 py-6">
-                        <span className="font-bold text-slate-800 text-sm tracking-tight">{res.id}</span>
+                        <span className="font-bold text-slate-800 text-sm tracking-tight">RES-{res.id.toString().padStart(4, "0")}</span>
                         </td>
 
                         {/* Date Column */}
@@ -82,7 +82,7 @@ export default function ReservationsTable({reservations, setSelectedRes}: props)
                 </tbody>
             </table>
             
-            {reservations.length === 0 && (
+            {reservations?.length === 0 && (
                 <div className="py-20 text-center border-t border-slate-50">
                 <p className="text-slate-400 font-medium tracking-tight italic">No reservations match your current filters.</p>
                 </div>

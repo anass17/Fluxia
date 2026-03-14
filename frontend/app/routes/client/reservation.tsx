@@ -4,6 +4,16 @@ import { type ReservationStatus, type Reservation } from '../../utils/types';
 import ReservationDetailsModal from "~/components/modals/ReservationDetailsModal";
 import NewReservationModal from "~/components/modals/NewReservationModal";
 import ReservationsTable from "~/components/tables/ReservationsTable";
+import { reservationsService } from "~/api/reservations.service";
+import { useLoaderData } from "react-router";
+
+
+export async function loader({ request }: { request: Request }) {
+    const response = reservationsService.getReservations(request)
+
+    return response
+
+}
 
 
 export default function ReservationsPage() {
@@ -12,20 +22,12 @@ export default function ReservationsPage() {
   const [sortBy, setSortBy] = useState<"date" | "price">("date");
   const [selectedRes, setSelectedRes] = useState<Reservation | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Initial Data
-  const initialReservations: Reservation[] = [
-    { id: "RES-9901", date: "2026-10-24", time: "11:00", guests: 1, status: "Coming", hasOrder: false },
-    { id: "RES-8842", date: "2026-10-22", time: "12:00", guests: 3, status: "Ongoing", hasOrder: true },
-    { id: "RES-7721", date: "2026-10-20", time: "10:00", guests: 2, status: "Completed", hasOrder: true },
-    { id: "RES-6610", date: "2026-10-18", time: "9:00", guests: 4, status: "Cancelled", hasOrder: false },
-  ];
+  const reservations: Reservation[] | undefined = useLoaderData()
 
   // Logic for Search, Filter, and Sort
   const processedReservations = useMemo(() => {
-    return initialReservations
-      .filter((res) => {
-        const matchesSearch = res.id.toLowerCase().includes(searchTerm.toLowerCase());
+    return reservations?.filter((res) => {
+        const matchesSearch = ("RES-" + res.id).toLowerCase().includes(searchTerm.toLowerCase());
         const matchesStatus = statusFilter === "All" || res.status === statusFilter;
         return matchesSearch && matchesStatus;
       })

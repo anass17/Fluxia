@@ -12,10 +12,10 @@ router = APIRouter(prefix='/reservations', tags=['Reservations'])
 
 
 
-@router.get("", response_model=ReservationSchema)
+@router.get("", response_model=list[ReservationSchema])
 def get_all_reservations(
     db: Session = Depends(get_db),
-    user_id = Depends(require_roles(["CLIENT"]))
+    user_id = Depends(require_roles("CLIENT"))
 ):
     service = ReservationService(db)
 

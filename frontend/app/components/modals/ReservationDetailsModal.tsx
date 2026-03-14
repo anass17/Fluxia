@@ -15,7 +15,7 @@ export default function ReservationDetailsModal({ reservation, onClose }: { rese
           <div className="flex justify-between items-start mb-8">
             <div>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Reservation Details</p>
-              <h2 className="text-3xl font-black text-slate-900">{reservation.id}</h2>
+              <h2 className="text-3xl font-black text-slate-900">RES-{reservation.id.toString().padStart(4, '0')}</h2>
             </div>
             <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -56,7 +56,7 @@ export default function ReservationDetailsModal({ reservation, onClose }: { rese
                 </div>
                 <div className="flex justify-between bg-slate-900 p-4 rounded-2xl text-white">
                   <span className="font-bold">Total Amount Paid</span>
-                  <span className="text-xl font-black">${reservation.price.toFixed(2)}</span>
+                  <span className="text-xl font-black">$255</span>
                 </div>
               </div>
             </div>
