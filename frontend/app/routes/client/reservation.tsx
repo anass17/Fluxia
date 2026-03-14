@@ -3,6 +3,7 @@ import { SearchIcon, PlusIcon, ChevronDownIcon } from '../../utils/icons';
 import { type ReservationStatus, type Reservation } from '../../utils/types';
 import ReservationDetailsModal from "~/components/modals/ReservationDetailsModal";
 import NewReservationModal from "~/components/modals/NewReservationModal";
+import ReservationsTable from "~/components/tables/ReservationsTable";
 
 
 export default function ReservationsPage() {
@@ -101,47 +102,7 @@ export default function ReservationsPage() {
       </div>
 
       {/* Main Content: Table */}
-      <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-slate-50/50 border-b border-slate-100">
-              <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest text-slate-400">Reservation ID</th>
-              <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest text-slate-400">Date & Time</th>
-              <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest text-slate-400">Final Price</th>
-              <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest text-slate-400">Status</th>
-              <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest text-slate-400 text-right">Action</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-50">
-            {processedReservations.map((res) => (
-              <tr key={res.id} className="group hover:bg-slate-50/50 transition-colors">
-                <td className="px-8 py-6 font-bold text-slate-800">{res.id}</td>
-                <td className="px-8 py-6 text-sm text-slate-500">
-                  {new Date(res.dateTime).toLocaleDateString()} at {new Date(res.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </td>
-                <td className="px-8 py-6 font-black text-slate-900">${res.price.toFixed(2)}</td>
-                <td className="px-8 py-6">
-                  <StatusBadge status={res.status} />
-                </td>
-                <td className="px-8 py-6 text-right">
-                  <button 
-                    onClick={() => setSelectedRes(res)}
-                    className="p-2.5 bg-slate-50 text-slate-900 rounded-xl hover:bg-slate-900 hover:text-white transition-all flex items-center gap-2 ml-auto"
-                  >
-                    <span className="text-xs font-bold px-1">Details</span>
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        
-        {processedReservations.length === 0 && (
-          <div className="py-20 text-center">
-            <p className="text-slate-400 font-medium">No reservations found matching your criteria.</p>
-          </div>
-        )}
-      </div>
+      <ReservationsTable reservations={processedReservations} setSelectedRes={setSelectedRes} />
 
       {selectedRes && (
         <ReservationDetailsModal 
@@ -154,21 +115,5 @@ export default function ReservationsPage() {
         <NewReservationModal onClose={() => setIsModalOpen(false)} />
       )}
     </div>
-  );
-}
-
-
-function StatusBadge({ status }: { status: ReservationStatus }) {
-  const styles: Record<ReservationStatus, string> = {
-    Coming: "bg-blue-50 text-blue-600 border-blue-100",
-    Ongoing: "bg-emerald-50 text-emerald-600 border-emerald-100",
-    Completed: "bg-slate-50 text-slate-600 border-slate-100",
-    Cancelled: "bg-rose-50 text-rose-600 border-rose-100",
-  };
-
-  return (
-    <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase border ${styles[status]}`}>
-      {status}
-    </span>
   );
 }
