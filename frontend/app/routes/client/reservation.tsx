@@ -15,10 +15,10 @@ export default function ReservationsPage() {
 
   // Initial Data
   const initialReservations: Reservation[] = [
-    { id: "RES-9901", dateTime: "2026-10-24T19:30:00", price: 124.50, status: "Coming", hasOrder: false },
-    { id: "RES-8842", dateTime: "2026-10-22T13:00:00", price: 85.00, status: "Ongoing", hasOrder: true },
-    { id: "RES-7721", dateTime: "2026-10-20T20:00:00", price: 210.00, status: "Completed", hasOrder: true },
-    { id: "RES-6610", dateTime: "2026-10-18T18:00:00", price: 45.00, status: "Cancelled", hasOrder: false },
+    { id: "RES-9901", date: "2026-10-24", time: "11:00", guests: 1, status: "Coming", hasOrder: false },
+    { id: "RES-8842", date: "2026-10-22", time: "12:00", guests: 3, status: "Ongoing", hasOrder: true },
+    { id: "RES-7721", date: "2026-10-20", time: "10:00", guests: 2, status: "Completed", hasOrder: true },
+    { id: "RES-6610", date: "2026-10-18", time: "9:00", guests: 4, status: "Cancelled", hasOrder: false },
   ];
 
   // Logic for Search, Filter, and Sort
@@ -30,8 +30,7 @@ export default function ReservationsPage() {
         return matchesSearch && matchesStatus;
       })
       .sort((a, b) => {
-        if (sortBy === "date") return new Date(b.dateTime).getTime() - new Date(a.dateTime).getTime();
-        if (sortBy === "price") return b.price - a.price;
+        if (sortBy === "date") return new Date(b.date).getTime() - new Date(a.date).getTime();
         return 0;
       });
   }, [searchTerm, statusFilter, sortBy]);
