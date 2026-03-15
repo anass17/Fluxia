@@ -28,6 +28,7 @@ export default [
     route("/admin/user/:id/toggle-status", "routes/admin/api/user_toggle_status.ts"),
     route("/admin/staff/create", "routes/admin/api/staff_create.ts"),
     route("/reservation/create", "routes/client/api/create_reservation.ts"),
+    route("/reservations/timeslots", "routes/api/reservations.timeslots.ts"),
 
     // Errors
     route("/unauthorized", "routes/errors/unauthorized.tsx")

@@ -7,6 +7,7 @@ export interface Reservation {
   time: string;
   guests: number;
   status: ReservationStatus;
+  table_number: number;
   hasOrder: boolean;
 }
 

@@ -32,3 +32,9 @@ class ReservationService:
     def get_user_reservations(self, user_id):
         reservations = self.model.get_user_reservations(user_id)
         return reservations
+
+
+    def get_taken_timeslots(self, table, date):
+        timeslots = self.model.get_timeslots_by_table_date(table, date)
+
+        return [t[0] for t in timeslots]

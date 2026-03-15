@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetcher } from "react-router";
 
 
@@ -7,6 +7,7 @@ export default function BookingForm({ tableId, onBack }: { tableId: string; onBa
     const [selectedTime, setSelectedTime] = useState<string>("");
     const [people, setPeople] = useState(2);
     const fetcher = useFetcher()
+    const timeslotFetcher = useFetcher();
 
     const isSubmitting = fetcher.state === "submitting";
     const isSuccess = fetcher.data?.success;
@@ -18,9 +19,16 @@ export default function BookingForm({ tableId, onBack }: { tableId: string; onBa
         "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", 
         "21:00", "22:00", "23:00"
     ];
-    
-    const reservedSlots = ["12:00", "19:00", "20:00"];
 
+
+    useEffect(() => {
+        if (date) {
+            timeslotFetcher.load(`/reservations/timeslots?date=${date}&table_number=${tableId}`);
+        }
+    }, [date, tableId]);
+
+    const reservedSlots = timeslotFetcher.data || [];
+    const isLoadingSlots = timeslotFetcher.state === "loading";
 
 
     if (isSuccess) {
@@ -52,19 +60,26 @@ export default function BookingForm({ tableId, onBack }: { tableId: string; onBa
             <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Select Date</label>
                 <input 
-                type="date"
-                name="date" 
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                style={{ colorScheme: 'light' }}
-                className="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-slate-900"
+                    type="date"
+                    name="date" 
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    style={{ colorScheme: 'light' }}
+                    className="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-slate-900"
                 />
+                {isLoadingSlots && (
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                        <div className="w-4 h-4 border-2 border-slate-900/20 border-t-slate-900 rounded-full animate-spin" />
+                    </div>
+                )}
             </div>
 
             {/* Time Slots */}
             {date && (
                 <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Available Slots (50min)</label>
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">
+                        {isLoadingSlots ? "Updating Slots..." : "Available Slots"}
+                    </label>
                     <div className="grid grid-cols-3 gap-2">
                         {timeSlots.map((time) => {
                         const isReserved = reservedSlots.includes(time);

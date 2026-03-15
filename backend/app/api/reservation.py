@@ -4,6 +4,7 @@ from app.db.deps import get_db
 from app.core.deps import get_current_user, require_roles
 from sqlalchemy.orm import Session
 from app.schemas.reservation import CreateReservationSchema, ReservationSchema
+from datetime import date
 
 
 
@@ -42,3 +43,15 @@ def get_all_reservations_by_user(
     service = ReservationService(db)
 
     return service.create_reservation(**data.model_dump(), user_id=user_id)
+
+
+@router.get("/timeslots", response_model=list[str])
+def get_taken_timeslots(
+    date: date, 
+    table: int,
+    db: Session = Depends(get_db),
+    # user_id = Depends(require_roles("CLIENT")),
+):
+    service = ReservationService(db)
+
+    return service.get_taken_timeslots(table, date)
