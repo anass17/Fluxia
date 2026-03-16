@@ -20,6 +20,19 @@ export const reservationsService = {
             `/reservations/timeslots?${params.toString()}`,
             { method: "GET" }
         );
-    }
+    },
+
+
+    getBookingsByDate: (request: Request, date: any) => {
+        const params = new URLSearchParams({
+            date,
+        });
+
+        return apiFetch(
+            request,
+            `/reservations/date?${params.toString()}`,
+            { method: "GET" }
+        );
+    },
 
 };

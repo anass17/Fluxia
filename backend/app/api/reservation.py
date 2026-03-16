@@ -55,3 +55,15 @@ def get_taken_timeslots(
     service = ReservationService(db)
 
     return service.get_taken_timeslots(table, date)
+
+
+
+@router.get("/date")
+def get_reservations_by_date(
+    date: date,
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("CLIENT")),
+):
+    service = ReservationService(db)
+
+    return service.get_reservations_by_date(user_id, date)

@@ -1,4 +1,5 @@
 import { getSession } from "~/services/session.server";
+import { redirect } from "react-router";
 
 const BASE_URL = "http://backend:8000";
 
@@ -22,6 +23,14 @@ export const apiFetch = async (request: Request, endpoint: string, options: Requ
         headers: { ...defaultHeaders, ...options.headers },
     });
 
+
+    // Error 401: Unauthorized
+
+    if (response.status == 401) {
+        const session = await getSession(request.headers.get("Cookie"));
+        session.unset("access_token");
+        throw redirect('/login')
+    }
 
 
     // Error 422: Unprocessed Data

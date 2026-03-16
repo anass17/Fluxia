@@ -17,10 +17,13 @@ export default [
         route("/admin/tables", "routes/monitoring/tables.tsx"),
     ]),
 
-    // User Routes
+
+    // Client Routes
     layout("layouts/ClientLayout.tsx", [
         route("/dashboard", "routes/client/dashboard.tsx"),
         route("/reservation", "routes/client/reservation.tsx"),
+        route("/calendar", "routes/client/calendar.tsx"),
+        route("/assistant", "routes/client/assistant.tsx"),
     ]),
 
     
@@ -29,6 +32,7 @@ export default [
     route("/admin/staff/create", "routes/admin/api/staff_create.ts"),
     route("/reservation/create", "routes/client/api/create_reservation.ts"),
     route("/reservations/timeslots", "routes/api/reservations.timeslots.ts"),
+    route("/reservations/date", "routes/client/api/reservations_by_date.ts"),
 
     // Errors
     route("/unauthorized", "routes/errors/unauthorized.tsx")

@@ -59,3 +59,13 @@ class ReservationModel:
         ).all()
 
         return timeslots
+    
+
+
+    def get_timeslots_by_date(self, user_id, date):
+        timeslots = self.db.query(Reservation).filter(
+            Reservation.user_id == user_id,
+            Reservation.date == date
+        ).all()
+
+        return timeslots
