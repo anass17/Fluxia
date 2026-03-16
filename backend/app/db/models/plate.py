@@ -11,6 +11,7 @@ class Plate(Base):
     TotalTime = Column(Integer)
     RecipeCategory = Column(String(100))
     RecipeIngredientParts = Column(Text)
+    Price = Column(Integer)
 
     Calories = Column(Float)
     FatContent = Column(Float)

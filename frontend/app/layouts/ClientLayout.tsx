@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, Outlet, useLocation, useLoaderData } from "react-router";
 import { LogoutButton } from "~/components/ui/LogoutButton";
 import { requireRole } from "~/services/auth.server";
-import { BellIcon, CalendarIcon, ChevronDownIcon, MenuIcon, MessageIcon, OrdersIcon, OverviewIcon, ReservationIcon, SearchIcon, SettingsIcon } from "~/utils/icons";
+import { BellIcon, CalendarIcon, ChevronDownIcon, MenuIcon, MenuIcon2, MessageIcon, OrdersIcon, OverviewIcon, ReservationIcon, SearchIcon, SettingsIcon } from "~/utils/icons";
 
 interface HeaderProps {
   user: { name: string; avatar?: string };
@@ -130,6 +130,7 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
       links: [
         { name: "Overview", path: "/dashboard", icon: <OverviewIcon /> },
         { name: "Calendar", path: "/calendar", icon: <CalendarIcon /> },
+        { name: "Menu", path: "/menu", icon: <MenuIcon2 /> },
       ],
     },
     {

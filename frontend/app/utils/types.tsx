@@ -23,3 +23,21 @@ export interface Message {
   role: "user" | "assistant";
   content: string;
 }
+
+
+export interface MenuItem {
+  id: string;
+  Name: string;
+  RecipeCategory: string;
+  RecipeIngredientParts: string[];
+  Price: number;
+  Calories: number;
+  FatContent: number;
+  SaturatedFatContent: number;
+  CholesterolContent: number;
+  SodiumContent: number;
+  CarbohydrateContent: number;
+  FiberContent: number;
+  SugarContent: number;
+  ProteinContent: number;
+}
