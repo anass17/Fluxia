@@ -1,6 +1,7 @@
 fastapi
 uvicorn[standard]
 pydantic[Email]
+pandas
 numpy
 opencv-python
 sqlalchemy
@@ -14,6 +15,7 @@ torchvision
 ultralytics
 scikit-image
 filterpy
+python-multipart
 # pytest
 # pytest-mock
 # requests-mock
