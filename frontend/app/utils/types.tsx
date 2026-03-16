@@ -18,3 +18,8 @@ export interface TablePosition {
   width: number;
   height: number;
 }
+
+export interface Message {
+  role: "user" | "assistant";
+  content: string;
+}
