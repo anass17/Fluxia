@@ -6,4 +6,7 @@ export const menuService = {
 
   askMenu: (request: Request, data: any) =>
     apiFetch(request, "/menu/chat", { method: "POST", body: JSON.stringify(data) }),
+
+  getChatHistory: (request: Request) =>
+    apiFetch(request, "/chat", { method: "GET" }),
 };

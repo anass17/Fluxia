@@ -21,3 +21,8 @@ class MenuSchema(BaseModel):
 
 class QuerySchema(BaseModel):
     query: str
+
+
+class HistoryQuerySchema(BaseModel):
+    query: str
+    answer: str

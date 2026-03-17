@@ -1,19 +1,37 @@
 import { useState, useEffect, useRef } from "react";
-import { useFetcher } from "react-router";
+import { useFetcher, useLoaderData } from "react-router";
+import { menuService } from "~/api/menu.service";
 import type { Message } from "~/utils/types";
+
+type QueryItem = {
+  query: string
+  answer: string
+}
+
+
+export async function loader({ request }: { request: Request }) {
+    const response = menuService.getChatHistory(request)
+
+    return response
+
+}
 
 
 
 export default function DietaryAssistant() {
   const fetcher = useFetcher();
+  const historyItems : QueryItem[] = useLoaderData()
   const [input, setInput] = useState("");
-  const [history, setHistory] = useState<Message[]>([
-    { 
-      role: "assistant", 
-      content: "Hello! I can help you check our menu for specific ingredients or allergens. Which dish or ingredient are you concerned about?" 
-    }
-  ]);
+  const [history, setHistory] = useState<any[]>(
+    [
+      { 
+        role: "assistant", 
+        content: "Hello! I can help you check our menu for specific ingredients or allergens. Which dish or ingredient are you concerned about?" 
+      },
+    ]  
+  )
 
+  
   const scrollRef = useRef<HTMLDivElement>(null);
   const isTyping = fetcher.state !== "idle";
   const BRAND_ACCENT = "oklch(49.1% 0.27 292.581)"; 
@@ -23,10 +41,23 @@ export default function DietaryAssistant() {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [history, isTyping]);
 
+  useEffect(() => {
+    if (historyItems.length > 0) {
+      setHistory([{ 
+          role: "assistant", 
+          content: "Hello! I can help you check our menu for specific ingredients or allergens. Which dish or ingredient are you concerned about?" 
+        },
+        ...historyItems.flatMap((item) => [
+          { role: "user", content: item.query },
+          { role: "assistant", content: item.answer }
+        ])
+      ]);
+    }
+  }, [historyItems]);
+
   // Sync fetcher data with history
   useEffect(() => {
     if (fetcher.data?.answer) {
-      console.log("DDD")
       setHistory(prev => [...prev, { role: "assistant", content: fetcher.data.answer }]);
     }
   }, [fetcher.data]);
