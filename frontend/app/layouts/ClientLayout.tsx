@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, Outlet, useLocation, useLoaderData } from "react-router";
 import { LogoutButton } from "~/components/ui/LogoutButton";
 import { requireRole } from "~/services/auth.server";
-import { BellIcon, CalendarIcon, ChevronDownIcon, MenuIcon, MenuIcon2, MessageIcon, OrdersIcon, OverviewIcon, ReservationIcon, SearchIcon, SettingsIcon } from "~/utils/icons";
+import { BellIcon, CalendarIcon, ChevronDownIcon, MenuIcon, MenuIcon2, MessageIcon, OrdersIcon, OverviewIcon, ReservationIcon, SearchIcon, SettingsIcon, UserIcon } from "~/utils/icons";
 
 interface HeaderProps {
   user: { name: string; avatar?: string };
@@ -36,7 +36,7 @@ export default function ClientLayout() {
 
         {/* PAGE CONTENT */}
         <main className="flex-1 overflow-y-auto p-8 bg-slate-50">
-          <Outlet />
+          <Outlet context={{ user }} />
         </main>
       </div>
     </div>
@@ -109,10 +109,17 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
             <>
               <div className="fixed inset-0 z-10" onClick={() => setIsMenuOpen(false)}></div>
               <div className="absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-xl shadow-slate-200/50 py-2 z-20 animate-in fade-in slide-in-from-top-2">
+                {/* Profile Link */}
+                <Link to="/profile" className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-violet-600 transition-colors">
+                  <UserIcon />
+                  Profile
+                </Link>
+
                 <Link to="/settings" className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-violet-600 transition-colors">
                   <SettingsIcon />
                   Settings
                 </Link>
+                
                 <div className="h-[1px] bg-slate-100 my-1 mx-2"></div>
                 <LogoutButton />
               </div>

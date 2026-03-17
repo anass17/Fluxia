@@ -21,6 +21,7 @@ export async function requireRole(request: Request, allowedRoles: string[]) {
         user: {
             first_name: session.get("first_name"),
             last_name: session.get("last_name"),
+            email: session.get("email"),
             role,
         },
     }

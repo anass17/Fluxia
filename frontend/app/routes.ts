@@ -24,8 +24,8 @@ export default [
         route("/reservation", "routes/client/reservation.tsx"),
         route("/calendar", "routes/client/calendar.tsx"),
         route("/assistant", "routes/client/assistant.tsx"),
+        route("/profile", "routes/client/profile.tsx"),
         route("/menu", "routes/client/menu.tsx"),
-
     ]),
 
     

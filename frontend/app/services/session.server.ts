@@ -23,6 +23,7 @@ export async function createUserSession(userData: any, request: Request) {
   session.set("access_token", userData.access_token);
   session.set("first_name", userData.first_name);
   session.set("last_name", userData.last_name);
+  session.set("email", userData.email);
   session.set("role", userData.role);
 
   let redirectTo = "/dashboard";

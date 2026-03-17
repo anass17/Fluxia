@@ -28,6 +28,7 @@ class AuthService:
             "access_token": token,
             "first_name": first_name,
             "last_name": last_name,
+            "email": email,
             "role": "CLIENT"
         }
     
@@ -50,6 +51,7 @@ class AuthService:
             "access_token": token,
             "first_name": first_name,
             "last_name": last_name,
+            "email": email,
             "role": "STAFF"
         }
     
@@ -73,5 +75,6 @@ class AuthService:
             "access_token": token,
             "first_name": user.first_name,
             "last_name": user.last_name,
+            "email": user.email,
             "role": user.role
         }
