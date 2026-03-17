@@ -20,6 +20,7 @@ export async function loader({ request }: { request: Request }) {
 
 export default function DietaryAssistant() {
   const fetcher = useFetcher();
+  const deleteFetcher = useFetcher()
   const historyItems : QueryItem[] = useLoaderData()
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<any[]>(
@@ -42,7 +43,7 @@ export default function DietaryAssistant() {
   }, [history, isTyping]);
 
   useEffect(() => {
-    if (historyItems.length > 0) {
+    if (historyItems?.length > 0) {
       setHistory([{ 
           role: "assistant", 
           content: "Hello! I can help you check our menu for specific ingredients or allergens. Which dish or ingredient are you concerned about?" 
@@ -74,6 +75,11 @@ export default function DietaryAssistant() {
   };
 
   const handleClearChat = () => {
+    deleteFetcher.submit(
+      null,
+      { method: "delete", action: `/chat/clear` }
+    );
+
     setHistory(
       [
         { 
@@ -97,7 +103,7 @@ export default function DietaryAssistant() {
         </div>
 
         <button 
-          onClick={handleClearChat} // Replace with your clear function
+          onClick={handleClearChat}
           className="flex items-center gap-2 px-3 py-2 text-xs font-medium text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 group"
           title="Clear conversation"
         >
@@ -122,7 +128,7 @@ export default function DietaryAssistant() {
             <pre 
               style={{
                 backgroundColor: msg.role === "user" ? BRAND_ACCENT : "white",
-                color: msg.role === "user" ? "white" : "#334155", // Slate-700
+                color: msg.role === "user" ? "white" : "#334155",
               }}
               className={`max-w-[80%] p-5 rounded-[2rem] font-sans whitespace-break-spaces text-sm font-medium leading-relaxed
               ${msg.role === "user" 

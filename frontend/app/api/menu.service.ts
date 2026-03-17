@@ -9,4 +9,7 @@ export const menuService = {
 
   getChatHistory: (request: Request) =>
     apiFetch(request, "/chat", { method: "GET" }),
+
+  clearChatHistory: (request: Request) => 
+    apiFetch(request, "/chat", { method: "DELETE" }),
 };

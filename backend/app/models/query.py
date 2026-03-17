@@ -32,3 +32,10 @@ class QueryModel:
 
         return queries
     
+
+    def delete_user_queries(self, user_id):
+        self.db.query(Query).filter(
+            Query.user_id == user_id
+        ).delete()
+
+        self.db.commit()
