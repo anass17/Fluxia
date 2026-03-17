@@ -143,7 +143,7 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
     {
       group: "Insights",
       links: [
-        { name: "AI Assistant", path: "/bot-messaging", icon: <MessageIcon /> },
+        { name: "AI Assistant", path: "/assistant", icon: <MessageIcon /> },
       ],
     },
   ];

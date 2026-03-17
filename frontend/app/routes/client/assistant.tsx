@@ -26,6 +26,7 @@ export default function DietaryAssistant() {
   // Sync fetcher data with history
   useEffect(() => {
     if (fetcher.data?.answer) {
+      console.log("DDD")
       setHistory(prev => [...prev, { role: "assistant", content: fetcher.data.answer }]);
     }
   }, [fetcher.data]);
@@ -38,8 +39,7 @@ export default function DietaryAssistant() {
     setHistory(prev => [...prev, { role: "user", content: userMsg }]);
     setInput("");
 
-    // Send to RAG backend
-    // fetcher.submit({ query: userMsg }, { method: "POST" });
+    fetcher.submit({ query: userMsg }, { method: "POST", action: "/chat/assistant" });
   };
 
   const quickFilters = ["Gluten-Free", "Nut Allergy", "Vegan", "Lactose"];
@@ -57,18 +57,18 @@ export default function DietaryAssistant() {
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-8 space-y-6 custom-scrollbar bg-slate-50/50">
         {history.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-            <div 
+            <pre 
               style={{
                 backgroundColor: msg.role === "user" ? BRAND_ACCENT : "white",
                 color: msg.role === "user" ? "white" : "#334155", // Slate-700
               }}
-              className={`max-w-[80%] p-5 rounded-[2rem] text-sm font-medium leading-relaxed
+              className={`max-w-[80%] p-5 rounded-[2rem] font-sans whitespace-break-spaces text-sm font-medium leading-relaxed
               ${msg.role === "user" 
                 ? "rounded-tr-none shadow-md" 
                 : "rounded-tl-none border border-slate-100 shadow-sm"}
             `}>
               {msg.content}
-            </div>
+            </pre>
           </div>
         ))}
         
@@ -103,6 +103,7 @@ export default function DietaryAssistant() {
           <input
             type="text"
             value={input}
+            name="query"
             onChange={(e) => setInput(e.target.value)}
             placeholder="Does the Truffle Pasta contain nuts?"
             className="w-full p-5 pr-16 bg-slate-100 border-none rounded-[1.5rem] text-sm font-bold focus:ring-2 outline-none transition-all"

@@ -25,6 +25,7 @@ export default [
         route("/calendar", "routes/client/calendar.tsx"),
         route("/assistant", "routes/client/assistant.tsx"),
         route("/menu", "routes/client/menu.tsx"),
+
     ]),
 
     
@@ -34,6 +35,7 @@ export default [
     route("/reservation/create", "routes/client/api/create_reservation.ts"),
     route("/reservations/timeslots", "routes/api/reservations.timeslots.ts"),
     route("/reservations/date", "routes/client/api/reservations_by_date.ts"),
+    route("/chat/assistant", "routes/client/api/chat_assistant.ts"),
 
     // Errors
     route("/unauthorized", "routes/errors/unauthorized.tsx")
