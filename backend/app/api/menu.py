@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from app.db.deps import get_db
 from app.db.models import Plate
 from app.services.menu import MenuService
+from app.schemas.menu import MenuSchema
 
 
 router = APIRouter(prefix='/menu', tags=['Menu'])
@@ -18,9 +19,19 @@ async def import_recipes(
 
 
 
-@router.get("")
+@router.get("", response_model=list[MenuSchema])
 def get_menu(
     db: Session = Depends(get_db)
 ):
     service = MenuService(db)
     return service.get_menu()
+
+
+
+@router.get("/search")
+def search_menu(
+    query: str,
+    db: Session = Depends(get_db)
+):
+    service = MenuService(db)
+    return service.search_menu(query)

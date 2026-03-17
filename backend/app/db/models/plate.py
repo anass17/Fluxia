@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, Float, String, Text
 from app.db.base import Base
+from pgvector.sqlalchemy import Vector
 
 
 class Plate(Base):
@@ -22,3 +23,5 @@ class Plate(Base):
     FiberContent = Column(Float)
     SugarContent = Column(Float)
     ProteinContent = Column(Float)
+
+    ingredients_vector = Column(Vector(1024))

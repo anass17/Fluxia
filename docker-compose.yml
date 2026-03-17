@@ -47,7 +47,7 @@ services:
     command: npm run dev -- --host
 
   postgres:
-    image: postgres:15
+    image: pgvector/pgvector:pg15
     container_name: postgres
     restart: unless-stopped
     environment:

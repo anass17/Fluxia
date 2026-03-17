@@ -3,6 +3,9 @@ uvicorn[standard]
 pydantic[Email]
 pandas
 numpy
+faker
+pgvector
+sentence-transformers
 opencv-python
 sqlalchemy
 pydantic-settings
