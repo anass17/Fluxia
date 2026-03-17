@@ -2,6 +2,8 @@ from app.models.menu import MenuModel
 from app.db.models import Plate
 from fastapi import HTTPException, status
 from sentence_transformers import SentenceTransformer
+from app.utils.prompt import llm_prompt
+from app.utils.ollama_generate import ollama_generate
 import pandas as pd
 import io
 
@@ -57,3 +59,24 @@ class MenuService:
             })
 
         return formatted_results
+    
+
+    def llm_generate_answer(
+        self,
+        query: str,
+        ollama_url: str,
+        model: str,
+        chunks: list,
+        temperature: int = 0.2,
+        max_tokens: int = 256,
+    ) -> str:
+
+        # Build context from chunks
+        context = "\n\n".join(
+            [f"Plate: {c['name']} | Category: {c['category']} | Ingredients: {c['ingredients']}" for c in chunks]
+        )
+
+        prompt = llm_prompt(query, context)
+        answer = ollama_generate(prompt, ollama_url, model, temperature, max_tokens)
+
+        return answer

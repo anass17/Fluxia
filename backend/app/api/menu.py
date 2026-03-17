@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.db.deps import get_db
 from app.db.models import Plate
 from app.services.menu import MenuService
-from app.schemas.menu import MenuSchema
+from app.schemas.menu import MenuSchema, QuerySchema
 
 
 router = APIRouter(prefix='/menu', tags=['Menu'])
@@ -35,3 +35,25 @@ def search_menu(
 ):
     service = MenuService(db)
     return service.search_menu(query)
+
+
+
+LLM_MODEL = "llama3:8b"
+
+
+@router.post("/answer")
+def get_answer_to_query(
+    data: QuerySchema,
+    db: Session = Depends(get_db)
+):
+    
+    ollama_url = "http://host.docker.internal:11434/api/generate"
+
+    service = MenuService(db)
+    context = service.search_menu(data.query)
+
+    answer = service.llm_generate_answer(data.query, ollama_url, LLM_MODEL, context)
+    
+    return {
+        "answer": answer
+    }

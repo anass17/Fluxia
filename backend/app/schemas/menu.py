@@ -17,3 +17,7 @@ class MenuSchema(BaseModel):
     FiberContent: float
     SugarContent: float
     ProteinContent: float
+
+
+class QuerySchema(BaseModel):
+    query: str
