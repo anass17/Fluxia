@@ -75,6 +75,9 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
       {/* Right Section: Actions & Profile */}
       <div className="flex items-center gap-3">
 
+        <Link to={"/assistant"} className="p-2 text-slate-500 hover:bg-slate-100 rounded-lg relative">
+          <MessageIcon />
+        </Link>
         <button className="p-2 text-slate-500 hover:bg-slate-100 rounded-lg relative">
           <BellIcon />
           <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 border-2 border-white rounded-full"></span>
