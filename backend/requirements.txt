@@ -5,6 +5,7 @@ pandas
 numpy
 faker
 pgvector
+openai
 sentence-transformers
 opencv-python
 sqlalchemy

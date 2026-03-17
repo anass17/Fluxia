@@ -5,5 +5,5 @@ export const menuService = {
     apiFetch(request, "/menu", { method: "GET" }),
 
   askMenu: (request: Request, data: any) =>
-    apiFetch(request, "/menu/answer", { method: "POST", body: JSON.stringify(data) }),
+    apiFetch(request, "/menu/chat", { method: "POST", body: JSON.stringify(data) }),
 };

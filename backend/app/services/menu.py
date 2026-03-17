@@ -1,10 +1,13 @@
 from app.models.menu import MenuModel
+from app.models.query import QueryModel
 from app.db.models import Plate
 from fastapi import HTTPException, status
 from sentence_transformers import SentenceTransformer
 from app.utils.prompt import llm_prompt
 from app.utils.ollama_generate import ollama_generate
 import pandas as pd
+import requests
+import json
 import io
 
 
@@ -16,6 +19,7 @@ class MenuService:
     def __init__(self, db):
         self.db = db
         self.model = MenuModel(db)
+        self.query_model = QueryModel(db)
 
 
 
@@ -67,6 +71,7 @@ class MenuService:
         ollama_url: str,
         model: str,
         chunks: list,
+        user_id: int,
         temperature: int = 0.2,
         max_tokens: int = 256,
     ) -> str:
@@ -78,5 +83,7 @@ class MenuService:
 
         prompt = llm_prompt(query, context)
         answer = ollama_generate(prompt, ollama_url, model, temperature, max_tokens)
+
+        self.query_model.insert_query(query, answer, user_id)
 
         return answer

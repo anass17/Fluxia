@@ -4,6 +4,7 @@ from app.db.deps import get_db
 from app.db.models import Plate
 from app.services.menu import MenuService
 from app.schemas.menu import MenuSchema, QuerySchema
+from app.core.deps import require_roles
 
 
 router = APIRouter(prefix='/menu', tags=['Menu'])
@@ -41,10 +42,11 @@ def search_menu(
 LLM_MODEL = "llama3:8b"
 
 
-@router.post("/answer")
+@router.post("/chat")
 def get_answer_to_query(
     data: QuerySchema,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("CLIENT")),
 ):
     
     ollama_url = "http://host.docker.internal:11434/api/generate"
@@ -52,7 +54,7 @@ def get_answer_to_query(
     service = MenuService(db)
     context = service.search_menu(data.query)
 
-    answer = service.llm_generate_answer(data.query, ollama_url, LLM_MODEL, context)
+    answer = service.llm_generate_answer(data.query, ollama_url, LLM_MODEL, context, user_id)
     
     return {
         "answer": answer
