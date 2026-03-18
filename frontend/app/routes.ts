@@ -38,6 +38,7 @@ export default [
         route('/staff/inventory', "routes/staff/_inventory.tsx"),
         route('/staff/menu', "routes/staff/menu.tsx"),
         route('/staff/settings', "routes/staff/settings.tsx"),
+        route('/staff/orders', "routes/staff/orders.tsx"),
     ]),
 
     
