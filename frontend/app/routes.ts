@@ -33,7 +33,11 @@ export default [
     // Staff Routes
     layout("layouts/StaffLayout.tsx", [
         route("/staff/dashboard", "routes/staff/dashboard.tsx"),
-        route('/staff/reservations', "routes/staff/reservation.tsx")
+        route('/staff/reservations', "routes/staff/reservation.tsx"),
+        route('/staff/calendar', "routes/staff/calendar.tsx"),
+        route('/staff/inventory', "routes/staff/_inventory.tsx"),
+        route('/staff/menu', "routes/staff/menu.tsx"),
+        route('/staff/settings', "routes/staff/settings.tsx"),
     ]),
 
     
@@ -43,6 +47,7 @@ export default [
     route("/reservation/create", "routes/client/api/create_reservation.ts"),
     route("/reservations/timeslots", "routes/api/reservations.timeslots.ts"),
     route("/reservations/date", "routes/client/api/reservations_by_date.ts"),
+    route("api/reservations/date/all", "routes/staff/api/reservations_by_date.ts"),
     route("/chat/assistant", "routes/client/api/chat_assistant.ts"),
     route("/chat/clear", "routes/client/api/clear_chat.ts"),
 

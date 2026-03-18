@@ -68,3 +68,15 @@ def get_reservations_by_date(
     service = ReservationService(db)
 
     return service.get_reservations_by_date(user_id, date)
+
+
+
+@router.get("/date/all")
+def get_all_reservations_by_date(
+    date: date,
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("STAFF", "ADMIN", "OWNER")),
+):
+    service = ReservationService(db)
+
+    return service.get_all_reservations_by_date(date)

@@ -39,4 +39,18 @@ export const reservationsService = {
         );
     },
 
+
+
+    getAllBookingsByDate: (request: Request, date: any) => {
+        const params = new URLSearchParams({
+            date,
+        });
+
+        return apiFetch(
+            request,
+            `/reservations/date/all?${params.toString()}`,
+            { method: "GET" }
+        );
+    },
+
 };

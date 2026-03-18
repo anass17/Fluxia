@@ -73,10 +73,6 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        {/* Keeping the MessageIcon but pointing it to staff comms if needed */}
-        <button className="p-2 text-slate-500 hover:bg-slate-100 rounded-lg relative">
-          <MessageIcon />
-        </button>
         <button className="p-2 text-slate-500 hover:bg-slate-100 rounded-lg relative">
           <BellIcon />
           <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 border-2 border-white rounded-full"></span>
@@ -99,9 +95,6 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
             <>
               <div className="fixed inset-0 z-10" onClick={() => setIsMenuOpen(false)}></div>
               <div className="absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-xl shadow-slate-200/50 py-2 z-20 animate-in fade-in slide-in-from-top-2">
-                <Link to="/staff/profile" className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-violet-600 transition-colors">
-                  <UserIcon /> Profile
-                </Link>
                 <Link to="/staff/settings" className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-violet-600 transition-colors">
                   <SettingsIcon /> Settings
                 </Link>

@@ -44,3 +44,8 @@ class ReservationService:
     def get_reservations_by_date(self, user_id, date):
         reservations = self.model.get_timeslots_by_date(user_id, date)
         return reservations
+    
+
+    def get_all_reservations_by_date(self, date):
+        reservations = self.model.get_all_timeslots_by_date(date)
+        return reservations
