@@ -29,6 +29,13 @@ export default [
         route("/menu", "routes/client/menu.tsx"),
     ]),
 
+
+    // Staff Routes
+    layout("layouts/StaffLayout.tsx", [
+        route("/staff/dashboard", "routes/staff/dashboard.tsx"),
+        route('/staff/reservations', "routes/staff/reservation.tsx")
+    ]),
+
     
     // Ressource routes
     route("/admin/user/:id/toggle-status", "routes/admin/api/user_toggle_status.ts"),

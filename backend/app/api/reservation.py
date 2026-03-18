@@ -26,7 +26,8 @@ def get_all_reservations(
 
 @router.get("/all", response_model=list[ReservationSchema])
 def get_all_reservations(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("STAFF", "ADMIN", "OWNER"))
 ):
     service = ReservationService(db)
 

@@ -8,6 +8,10 @@ export const reservationsService = {
     getReservations: (request: Request) =>
         apiFetch(request, "/reservations", { method: "GET" }),
 
+
+    getAllReservations: (request: Request) =>
+        apiFetch(request, "/reservations/all", { method: "GET" }),
+
     
     getTakenTimeslots: (request: Request, date: string, table: number) => {
         const params = new URLSearchParams({

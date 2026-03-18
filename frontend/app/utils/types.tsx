@@ -41,3 +41,15 @@ export interface MenuItem {
   SugarContent: number;
   ProteinContent: number;
 }
+
+
+export type TableStatus = "free" | "occupied" | "need cleaning" | "awaiting";
+
+
+export interface Table {
+  id: string;
+  number: number;
+  status: TableStatus;
+  occupationTime: string;
+  estimatedWait?: string;
+}

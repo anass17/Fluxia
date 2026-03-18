@@ -33,6 +33,13 @@ export const apiFetch = async (request: Request, endpoint: string, options: Requ
     }
 
 
+    // Error 401: Forbidden
+
+    if (response.status == 403) {
+        throw redirect('/unauthorized')
+    }
+
+
     // Error 422: Unprocessed Data
 
     if (response.status == 422) {

@@ -30,8 +30,10 @@ export async function createUserSession(userData: any, request: Request) {
   
   if (userData.role === "ADMIN") {
     redirectTo = "/admin/dashboard";
-  } else if (userData.role === "STUFF") {
-    redirectTo = "/stuff/dashboard";
+  } else if (userData.role === "STAFF") {
+    redirectTo = "/staff/dashboard";
+  } else if (userData.role === "OWNER") {
+    redirectTo = "/owner/dashboard"
   }
 
   return redirect(redirectTo, {
