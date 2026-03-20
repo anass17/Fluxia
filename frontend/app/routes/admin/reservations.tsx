@@ -1,0 +1,111 @@
+import { useState, useMemo } from "react";
+import { SearchIcon } from '../../utils/icons';
+import { type ReservationStatus, type Reservation } from '../../utils/types';
+import ReservationDetailsModal from "~/components/modals/ReservationDetailsModal";
+import ReservationsTable from "~/components/tables/ReservationsTable";
+import { reservationsService } from "~/api/reservations.service";
+import { useLoaderData } from "react-router";
+
+
+export async function loader({ request }: { request: Request }) {
+    const response = reservationsService.getAllReservations(request)
+
+    return response
+
+}
+
+
+export default function ReservationsPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState<ReservationStatus | "All">("All");
+  const [sortBy, setSortBy] = useState<"date" | "price">("date");
+  const [selectedRes, setSelectedRes] = useState<Reservation | null>(null);
+  const reservations: Reservation[] | undefined = useLoaderData()
+
+  // Logic for Search, Filter, and Sort
+  const processedReservations = useMemo(() => {
+    return reservations?.filter((res) => {
+        const matchesSearch = ("RES-" + res.id).toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesStatus = statusFilter === "All" || res.status === statusFilter;
+        return matchesSearch && matchesStatus;
+      })
+      .sort((a, b) => {
+        if (sortBy === "date") return new Date(b.date).getTime() - new Date(a.date).getTime();
+        return 0;
+      });
+  }, [searchTerm, statusFilter, sortBy]);
+
+  return (
+    <div className="p-8 bg-slate-50 min-h-screen">
+      {/* Top Header Section */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+        <div>
+          <h1 className="text-3xl font-black text-slate-900 tracking-tight">Reservations</h1>
+          <p className="text-slate-500 font-medium">History and guest booking logs</p>
+        </div>
+      </div>
+
+      {/* Control Bar: Search, Sort, and Status Filter */}
+      <div className="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm mb-6 xl:flex-row space-y-4 items-center">
+        
+        <div className="flex justify-between items-center">
+            {/* Search */}
+            <div className="relative w-full xl:max-w-lg">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                    <SearchIcon />
+                </span>
+                <input 
+                    type="text" 
+                    placeholder="Search by ID..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-11 pr-4 py-3 bg-slate-50 border-transparent rounded-2xl text-sm focus:bg-white focus:ring-2 focus:ring-slate-200 transition-all"
+                />
+            </div>
+
+            {/* Sort Dropdown */}
+            <div className="xl:ml-auto flex items-center gap-3">
+                <span className="text-[10px] font-bold uppercase text-slate-400">Sort by:</span>
+                <select 
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as any)}
+                    className="bg-transparent text-sm font-bold text-slate-700 outline-none cursor-pointer"
+                >
+                    <option value="date">Latest Date</option>
+                    <option value="price">Highest Price</option>
+                </select>
+            </div>
+        </div>
+
+        {/* Status Filter Chips */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 xl:pb-0 no-scrollbar">
+          {["All", "Coming", "Ongoing", "Completed", "Cancelled"].map((status) => (
+            <button
+              key={status}
+              onClick={() => setStatusFilter(status as any)}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                statusFilter === status 
+                ? "bg-slate-900 text-white shadow-md" 
+                : "bg-white text-slate-500 border border-slate-100 hover:bg-slate-50"
+              }`}
+            >
+              {status}
+            </button>
+          ))}
+        </div>
+
+        
+      </div>
+
+      {/* Main Content: Table */}
+      <ReservationsTable reservations={processedReservations} setSelectedRes={setSelectedRes} />
+
+      {selectedRes && (
+        <ReservationDetailsModal 
+          reservation={selectedRes} 
+          onClose={() => setSelectedRes(null)} 
+        />
+      )}
+    </div>
+  );
+}

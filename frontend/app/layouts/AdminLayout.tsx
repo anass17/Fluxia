@@ -74,11 +74,6 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
 
       {/* Right Section: Actions & Profile */}
       <div className="flex items-center gap-3">
-        <button className="hidden md:flex items-center gap-2 cursor-pointer bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-sm shadow-violet-200">
-          <PlusIcon />
-          <span>Add Staff</span>
-        </button>
-
         <button className="p-2 text-slate-500 hover:bg-slate-100 rounded-lg relative">
           <BellIcon />
           <span className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 border-2 border-white rounded-full"></span>
@@ -133,7 +128,7 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
     {
       group: "Main",
       links: [
-        { name: "Overview", path: "/admin", icon: <OverviewIcon /> },
+        { name: "Overview", path: "/admin/dashboard", icon: <OverviewIcon /> },
         { name: "Tables Monitoring", path: "/admin/tables", icon: <TableIcon /> },
         { name: "Calendar", path: "/admin/calendar", icon: <CalendarIcon /> },
       ],

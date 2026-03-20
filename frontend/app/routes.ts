@@ -15,6 +15,9 @@ export default [
         route("/admin/clients", "routes/admin/clients.tsx"),
         route("/admin/staffs", "routes/admin/staffs.tsx"),
         route("/admin/tables", "routes/monitoring/tables.tsx"),
+        route('/admin/calendar', "routes/admin/calendar.tsx"),
+        route('/admin/reservations', "routes/admin/reservations.tsx"),
+        route('/admin/orders', "routes/admin/orders.tsx"),
     ]),
 
 
