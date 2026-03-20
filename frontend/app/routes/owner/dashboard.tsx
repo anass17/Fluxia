@@ -1,32 +1,40 @@
-import React from 'react';
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { statsService } from "~/api/stats.service";
+import { formatDistanceToNow } from 'date-fns';
+
+export async function loader({ request }: LoaderFunctionArgs) {
+    return await statsService.getOwnerStats(request)
+}
 
 const OwnerDashboard = () => {
-  // Mock Stats - These would come from your Loader
-  const stats = [
-    { 
-        label: 'Total Clients', 
-        value: '1,284', 
-        grow: '+12%', 
-        icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 
-    },
-    { 
-        label: 'Active Staff', 
-        value: '24', 
-        grow: '', 
-        icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> 
-    },
-    { 
-        label: 'Admins', 
-        value: '3', 
-        grow: '', 
-        icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 
-    },
-    { 
-        label: 'Reservations', 
-        value: '452', 
-        grow: '+8%', 
-        icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 
-    },
+    const dashboardStats = useLoaderData();
+  
+    // Mock Stats - These would come from your Loader
+    const stats = [
+        { 
+            label: 'Total Clients', 
+            value: dashboardStats?.clients || 0, 
+            grow: '+12%', 
+            icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 
+        },
+        { 
+            label: 'Active Staff', 
+            value: dashboardStats?.staffs || 0,  
+            grow: '', 
+            icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> 
+        },
+        { 
+            label: 'Admins', 
+            value: dashboardStats?.admins || 0, 
+            grow: '', 
+            icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 
+        },
+        { 
+            label: 'Reservations', 
+            value: dashboardStats?.reservations || 0, 
+            grow: '+8%', 
+            icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 
+        },
     ];
 
   return (
@@ -215,22 +223,18 @@ const OwnerDashboard = () => {
         <div className="bg-white border border-slate-100 rounded-[2rem] p-8 shadow-sm">
           <h3 className="text-lg font-black text-slate-900 mb-6">System Logs</h3>
           <div className="space-y-4">
-            {[
-              { user: 'Admin Sarah', action: 'Updated Menu Prices', time: '2h ago' },
-              { user: 'Chef Marco', action: 'Modified Ingredient (Pasta)', time: '4h ago' },
-              { user: 'Manager Alex', action: 'Added 2 New Staff', time: 'Yesterday' },
-            ].map((log, i) => (
+            {dashboardStats.activities.map((log: any, i: number) => (
               <div key={i} className="flex items-center justify-between py-3 border-b border-slate-50 last:border-0">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500">
-                    {log.user.charAt(0)}
+                    {log.who.replace(/[A-za-z]+ - /, '').charAt(0)}
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-slate-800">{log.user}</p>
+                    <p className="text-sm font-bold text-slate-800">{log.who}</p>
                     <p className="text-xs text-slate-500 font-medium">{log.action}</p>
                   </div>
                 </div>
-                <span className="text-[10px] font-bold text-slate-400">{log.time}</span>
+                <span className="text-[10px] font-bold text-slate-400">{formatDistanceToNow(new Date(log.date), { addSuffix: true })}</span>
               </div>
             ))}
           </div>
@@ -254,7 +258,7 @@ const OwnerDashboard = () => {
 
                 {/* Volume Badge */}
                 <div className="bg-violet-600 text-white text-[10px] font-black px-3 py-1 rounded-lg shadow-lg shadow-violet-200 flex flex-col items-center">
-                    <span className="leading-none">842</span>
+                    <span className="leading-none">{dashboardStats.most_ordered.sold_units}</span>
                     <span className="text-[7px] uppercase mt-0.5 opacity-80">Sold</span>
                 </div>
                 </div>
@@ -262,10 +266,10 @@ const OwnerDashboard = () => {
 
             <div className="relative z-10 mt-8">
                 <p className="text-[10px] font-black text-violet-400 uppercase tracking-[0.2em] mb-1">
-                Most Ordered Dish
+                    Most Ordered Dish
                 </p>
                 <h4 className="text-lg font-black text-violet-900 leading-tight">
-                Pesto Pasta
+                    {dashboardStats.most_ordered.name}
                 </h4>
             </div>
           </div>
