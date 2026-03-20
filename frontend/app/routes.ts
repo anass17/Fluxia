@@ -9,6 +9,20 @@ export default [
         route("/logout", "routes/auth/logout.tsx")
     ]),
 
+
+    // Owner Routes
+    layout("layouts/OwnerLayout.tsx", [
+        route("/owner/dashboard", "routes/owner/dashboard.tsx"),
+        route("/owner/clients", "routes/owner/clients.tsx"),
+        route("/owner/staffs", "routes/owner/staffs.tsx"),
+        route("/owner/tables", "routes/owner/tables.tsx"),
+        route('/owner/calendar', "routes/owner/calendar.tsx"),
+        route('/owner/reservations', "routes/owner/reservations.tsx"),
+        route('/owner/orders', "routes/owner/orders.tsx"),
+        route('/owner/menu', "routes/owner/menu.tsx"),
+    ]),
+
+
     // Admin Routes
     layout("layouts/AdminLayout.tsx", [
         route("/admin/dashboard", "routes/admin/dashboard.tsx"),
@@ -18,6 +32,7 @@ export default [
         route('/admin/calendar', "routes/admin/calendar.tsx"),
         route('/admin/reservations', "routes/admin/reservations.tsx"),
         route('/admin/orders', "routes/admin/orders.tsx"),
+        route('/admin/menu', "routes/admin/menu.tsx"),
     ]),
 
 

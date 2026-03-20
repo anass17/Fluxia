@@ -29,7 +29,7 @@ export interface MenuItem {
   id: string;
   Name: string;
   RecipeCategory: string;
-  RecipeIngredientParts: string[];
+  RecipeIngredientParts: string;
   Price: number;
   Calories: number;
   FatContent: number;

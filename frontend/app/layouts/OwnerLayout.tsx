@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Link, Outlet, useLocation, useLoaderData } from "react-router";
+import { Link, Outlet, useLocation, useLoaderData } from "react-router";
 import { LogoutButton } from "~/components/ui/LogoutButton";
 import { requireRole } from "~/services/auth.server";
 import { MenuIcon2 } from "~/utils/icons";
@@ -12,11 +12,11 @@ interface HeaderProps {
 
 // Secure the routes associated to this layout
 export async function loader({ request }: { request: Request }) {
-    return await requireRole(request, ["ADMIN"]);
+    return await requireRole(request, ["OWNER"]);
 }
 
 
-export default function AdminLayout() {
+export default function OwnerLayout() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const { user } = useLoaderData();
 
@@ -97,7 +97,7 @@ function Header({ user, onToggleSidebar }: HeaderProps) {
             </div>
             <div className="hidden lg:block text-left">
               <p className="text-sm font-bold text-slate-700 leading-none">{user.name}</p>
-              <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-wider font-semibold">Administrator</p>
+              <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-wider font-semibold">Owner</p>
             </div>
             <ChevronDownIcon />
           </button>
@@ -129,24 +129,24 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
     {
       group: "Operations", // Live monitoring and active flow
       links: [
-        { name: "Overview", path: "/admin/dashboard", icon: <OverviewIcon /> },
-        { name: "Tables Monitoring", path: "/admin/tables", icon: <TableIcon /> },
-        { name: "Orders", path: "/admin/orders", icon: <OrdersIcon /> },
-        { name: "Reservations", path: "/admin/reservations", icon: <ReservationIcon /> },
+        { name: "Overview", path: "/owner/dashboard", icon: <OverviewIcon /> },
+        { name: "Tables Monitoring", path: "/owner/tables", icon: <TableIcon /> },
+        { name: "Orders", path: "/owner/orders", icon: <OrdersIcon /> },
+        { name: "Reservations", path: "/owner/reservations", icon: <ReservationIcon /> },
       ],
     },
     {
       group: "Resources", // The "Data" of the restaurant
       links: [
-        { name: "Menu Management", path: "/admin/menu", icon: <MenuIcon2 /> },
-        { name: "Customers", path: "/admin/clients", icon: <CustomersIcon /> },
-        { name: "Staff Management", path: "/admin/staffs", icon: <StaffIcon /> },
+        { name: "Menu Management", path: "/owner/menu", icon: <MenuIcon2 /> },
+        { name: "Customers", path: "/owner/clients", icon: <CustomersIcon /> },
+        { name: "Staff Management", path: "/owner/staffs", icon: <StaffIcon /> },
       ],
     },
     {
       group: "Planning",
       links: [
-        { name: "Calendar", path: "/admin/calendar", icon: <CalendarIcon /> },
+        { name: "Calendar", path: "/owner/calendar", icon: <CalendarIcon /> },
       ],
     },
   ];
