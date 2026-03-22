@@ -1,5 +1,6 @@
 import requests
 
+
 def ollama_generate(
     prompt: str,
     ollama_url: str,

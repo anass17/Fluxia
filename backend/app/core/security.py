@@ -3,11 +3,9 @@ import bcrypt
 from jose import jwt
 from app.core.config import settings
 
-
 SECRET_KEY = settings.secret_key
 ALGORITHM = settings.algorithm
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.access_token_expire_minutes
-
 
 
 def hash_password(password: str) -> str:
@@ -16,13 +14,8 @@ def hash_password(password: str) -> str:
     return hashed.decode("utf-8")
 
 
-
 def verify_password(password: str, hashed: str) -> bool:
-    return bcrypt.checkpw(
-        password.encode("utf-8"),
-        hashed.encode("utf-8")
-    )
-
+    return bcrypt.checkpw(password.encode("utf-8"), hashed.encode("utf-8"))
 
 
 def create_access_token(data: dict):

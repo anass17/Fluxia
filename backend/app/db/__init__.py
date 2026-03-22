@@ -1,1 +1,1 @@
-from app.db.session import engine, SessionLocal
+from app.db.session import engine, SessionLocal  # noqa: F401

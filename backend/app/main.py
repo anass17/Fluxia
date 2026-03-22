@@ -1,7 +1,8 @@
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from app.db.base import Base
 from app.db.session import engine
+
 # from app.routes.health import router as health_router
 from app.api.auth import router as auth_router
 from app.api.user import router as user_router
@@ -15,8 +16,8 @@ import app.db.models
 from fastapi.middleware.cors import CORSMiddleware
 
 origins = [
-    "http://localhost:3000",   # dev on host
-    "http://frontend:3000",    # frontend container
+    "http://localhost:3000",  # dev on host
+    "http://frontend:3000",  # frontend container
 ]
 
 
@@ -25,9 +26,8 @@ async def lifespan(app: FastAPI):
     # STARTUP code
     Base.metadata.create_all(bind=engine)
     print("✅ Database tables created")
-    
-    yield
 
+    yield
 
 
 app = FastAPI(lifespan=lifespan)
@@ -40,7 +40,6 @@ app.add_middleware(
 )
 
 
-
 # app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(user_router)
@@ -51,6 +50,6 @@ app.include_router(stats_router)
 app.include_router(ws_router)
 
 
-@app.get('/')
+@app.get("/")
 def main():
-    return {'message': 'running'}
+    return {"message": "running"}

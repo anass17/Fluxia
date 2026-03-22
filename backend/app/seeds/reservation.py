@@ -3,7 +3,6 @@ from faker import Faker
 from app.db.session import SessionLocal
 from app.db.models import Reservation, User
 from app.db.enums.reservation_status_enum import EnumReservationStatus
-from sqlalchemy.orm import Session
 
 fake = Faker()
 
@@ -13,7 +12,9 @@ def seed_reservations(n=50):
     db = SessionLocal()
 
     # Get all user IDs
-    client_ids = [user.id for user in db.query(User.id).filter(User.role == "CLIENT").all()]
+    client_ids = [
+        user.id for user in db.query(User.id).filter(User.role == "CLIENT").all()
+    ]
 
     if not client_ids:
         print("No users found. Seed users first.")
@@ -29,7 +30,7 @@ def seed_reservations(n=50):
             status=random.choice(list(EnumReservationStatus)),
             guests=random.randint(1, 4),
             note=fake.sentence(nb_words=6),
-            user_id=random.choice(client_ids)
+            user_id=random.choice(client_ids),
         )
 
         reservations.append(reservation)

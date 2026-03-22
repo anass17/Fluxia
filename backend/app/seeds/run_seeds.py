@@ -2,6 +2,7 @@
 from app.seeds.user import seed_users, seed_custom_users
 from app.seeds.reservation import seed_reservations
 
+
 def run():
 
     seed_custom_users()

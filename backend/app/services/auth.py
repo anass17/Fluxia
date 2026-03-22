@@ -9,9 +9,9 @@ class AuthService:
         self.db = db
         self.model = UserModel(db)
 
-
-
-    def register_client(self, first_name: str, last_name: str, email: str, password: str):
+    def register_client(
+        self, first_name: str, last_name: str, email: str, password: str
+    ):
         existing_user = self.model.get_user_by_email(email)
 
         first_name = first_name.capitalize()
@@ -20,7 +20,9 @@ class AuthService:
         if existing_user:
             return None
 
-        user = self.model.create_user(first_name, last_name, email, hash_password(password))
+        user = self.model.create_user(
+            first_name, last_name, email, hash_password(password)
+        )
 
         token = create_access_token({"sub": str(user.id), "role": user.role})
 
@@ -29,12 +31,12 @@ class AuthService:
             "first_name": first_name,
             "last_name": last_name,
             "email": email,
-            "role": "CLIENT"
+            "role": "CLIENT",
         }
-    
 
-
-    def register_staff(self, first_name: str, last_name: str, email: str, password: str):
+    def register_staff(
+        self, first_name: str, last_name: str, email: str, password: str
+    ):
         existing_user = self.model.get_user_by_email(email)
 
         first_name = first_name.capitalize()
@@ -43,7 +45,9 @@ class AuthService:
         if existing_user:
             return None
 
-        user = self.model.create_user(first_name, last_name, email, hash_password(password), "STAFF")
+        user = self.model.create_user(
+            first_name, last_name, email, hash_password(password), "STAFF"
+        )
 
         token = create_access_token({"sub": str(user.id), "role": user.role})
 
@@ -52,11 +56,8 @@ class AuthService:
             "first_name": first_name,
             "last_name": last_name,
             "email": email,
-            "role": "STAFF"
+            "role": "STAFF",
         }
-    
-
-
 
     def authenticate_user(self, email: str, password: str):
         user = self.model.get_user_by_email(email)
@@ -66,9 +67,11 @@ class AuthService:
 
         if not verify_password(password, user.password):
             return None
-        
-        if user.is_active == False:
-            raise HTTPException(status.HTTP_403_FORBIDDEN, "Your account has been blocked by an admin")
+
+        if not user.is_active:
+            raise HTTPException(
+                status.HTTP_403_FORBIDDEN, "Your account has been blocked by an admin"
+            )
 
         token = create_access_token({"sub": str(user.id), "role": user.role})
         return {
@@ -76,5 +79,5 @@ class AuthService:
             "first_name": user.first_name,
             "last_name": user.last_name,
             "email": user.email,
-            "role": user.role
+            "role": user.role,
         }

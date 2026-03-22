@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+
 class Settings(BaseSettings):
     db_user: str
     db_password: str
@@ -12,9 +13,8 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int = 30
 
     model_config = SettingsConfigDict(
-        env_file="../.env",
-        extra="ignore",
-        case_sensitive=False
+        env_file="../.env", extra="ignore", case_sensitive=False
     )
+
 
 settings = Settings()

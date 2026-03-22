@@ -1,11 +1,13 @@
 from app.models.menu import MenuModel
 from app.models.query import QueryModel
-from sentence_transformers import SentenceTransformer
+
+# from sentence_transformers import SentenceTransformer
 from app.utils.prompt import llm_prompt
 from app.utils.ollama_generate import ollama_generate
 import pandas as pd
 import io
-import os
+
+# import os
 
 
 # os.environ['SENTENCE_TRANSFORMERS_HOME'] = './.model_cache'
@@ -19,8 +21,6 @@ class MenuService:
         self.db = db
         self.model = MenuModel(db)
         self.query_model = QueryModel(db)
-
-
 
     async def create_menu(self, file):
         contents = await file.read()
@@ -39,13 +39,10 @@ class MenuService:
         recipes = self.model.insert_menu_items(records)
 
         return {"message": f"{len(recipes)} recipes inserted successfully"}
-    
-
 
     def get_menu(self):
         menu = self.model.get_menu()
         return menu
-    
 
     def search_menu(self, user_query: str, limit: int = 5):
         query_vector = embedding_model.encode(user_query).tolist()
@@ -54,15 +51,16 @@ class MenuService:
 
         formatted_results = []
         for plate in plates:
-            formatted_results.append({
-                "name": plate.Name,
-                "category": plate.RecipeCategory,
-                "ingredients": plate.RecipeIngredientParts,
-                "price": plate.Price
-            })
+            formatted_results.append(
+                {
+                    "name": plate.Name,
+                    "category": plate.RecipeCategory,
+                    "ingredients": plate.RecipeIngredientParts,
+                    "price": plate.Price,
+                }
+            )
 
         return formatted_results
-    
 
     def llm_generate_answer(
         self,
@@ -77,7 +75,10 @@ class MenuService:
 
         # Build context from chunks
         context = "\n\n".join(
-            [f"Plate: {c['name']} | Category: {c['category']} | Ingredients: {c['ingredients']}" for c in chunks]
+            [
+                f"Plate: {c['name']} | Category: {c['category']} | Ingredients: {c['ingredients']}"
+                for c in chunks
+            ]
         )
 
         prompt = llm_prompt(query, context)

@@ -1,15 +1,12 @@
 from app.db.models.plate import Plate
 from sqlalchemy.orm import Session
-from sqlalchemy import select, func
-
+from sqlalchemy import select
 
 
 class MenuModel:
 
     def __init__(self, db: Session):
         self.db = db
-
-    
 
     def insert_menu_items(self, items):
 
@@ -31,7 +28,7 @@ class MenuModel:
                 FiberContent=row["FiberContent"],
                 SugarContent=row["SugarContent"],
                 ProteinContent=row["ProteinContent"],
-                ingredients_vector=row["ingredients_vector"]
+                ingredients_vector=row["ingredients_vector"],
             )
             recipes.append(recipe)
 
@@ -40,12 +37,9 @@ class MenuModel:
 
         return recipes
 
-
-    
     def get_menu(self):
         menu = self.db.query(Plate).all()
         return menu
-    
 
     def search_by_similarity(self, query_vector, limit):
         stmt = (
@@ -53,8 +47,8 @@ class MenuModel:
             .order_by(Plate.ingredients_vector.cosine_distance(query_vector))
             .limit(limit)
         )
-        
+
         result = self.db.execute(stmt)
         plates = result.scalars().all()
-        
+
         return plates

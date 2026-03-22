@@ -3,6 +3,7 @@ from app.db.base import Base
 from app.db.enums.action_type_enum import EnumActionType
 from app.db.enums.action_entity_enum import EnumActionEntity
 
+
 class Action(Base):
     __tablename__ = "actions"
 

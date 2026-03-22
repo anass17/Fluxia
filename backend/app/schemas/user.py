@@ -4,13 +4,10 @@ from app.db.enums.role_enum import EnumRole
 from datetime import datetime
 
 
-
-
 class UserRoleUpdateResponse(BaseModel):
     first_name: str
     last_name: str
     role: Literal["ADMIN", "STAFF"]
-
 
 
 class UserSchema(BaseModel):
@@ -21,4 +18,3 @@ class UserSchema(BaseModel):
     is_active: bool
     role: EnumRole
     created_at: datetime
-

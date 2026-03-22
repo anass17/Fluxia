@@ -35,9 +35,7 @@ CUSTOM_USERS = {
             "email": "ahmed@taoudi.com",
         }
     ],
-
 }
-
 
 
 def seed_custom_users():
@@ -55,19 +53,19 @@ def seed_custom_users():
                 "first_name": user["first_name"],
                 "last_name": user["last_name"],
                 "email": user["email"],
-                "password": "123456789"
+                "password": "123456789",
             }
 
             service.register_client(**owner_data)
 
-            db.query(User).filter(User.email == user["email"]).update({User.role: item[0]})
+            db.query(User).filter(User.email == user["email"]).update(
+                {User.role: item[0]}
+            )
             db.commit()
-    
+
         print(f"-> {len(item[1])} {item[0].lower()}s inserted")
 
     db.close()
-
-
 
 
 def seed_users(n_clients=10, n_staffs=10):
@@ -81,11 +79,10 @@ def seed_users(n_clients=10, n_staffs=10):
             "first_name": fake.first_name(),
             "last_name": fake.last_name(),
             "email": fake.email(),
-            "password": "123456789"
+            "password": "123456789",
         }
 
         service.register_client(**user_data)
-
 
     for _ in range(n_staffs):
 
@@ -93,7 +90,7 @@ def seed_users(n_clients=10, n_staffs=10):
             "first_name": fake.first_name(),
             "last_name": fake.last_name(),
             "email": fake.email(),
-            "password": "123456789"
+            "password": "123456789",
         }
 
         service.register_staff(**user_data)
@@ -102,4 +99,3 @@ def seed_users(n_clients=10, n_staffs=10):
 
     print(f"-> {n_clients} clients inserted")
     print(f"-> {n_staffs} staffs inserted")
-

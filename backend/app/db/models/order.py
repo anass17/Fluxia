@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, TIMESTAMP, ForeignKey, func
 from app.db.base import Base
 
+
 class Order(Base):
     __tablename__ = "orders"
 

@@ -8,43 +8,46 @@ class ReservationService:
         self.db = db
         self.model = ReservationModel(db)
 
-
-
-    def create_reservation(self, table_number: int, date: str, time: str, guests: int, note: str, user_id: int):
-        existing_reservation = self.model.check_reservation_existence(table_number, date, time)
+    def create_reservation(
+        self,
+        table_number: int,
+        date: str,
+        time: str,
+        guests: int,
+        note: str,
+        user_id: int,
+    ):
+        existing_reservation = self.model.check_reservation_existence(
+            table_number, date, time
+        )
 
         if existing_reservation:
-            raise HTTPException(status.HTTP_409_CONFLICT, detail="Reservation already exists")
+            raise HTTPException(
+                status.HTTP_409_CONFLICT, detail="Reservation already exists"
+            )
 
-        reservation = self.model.create_reservation(table_number, date, time, guests, note, user_id)
+        reservation = self.model.create_reservation(
+            table_number, date, time, guests, note, user_id
+        )
 
         return reservation
-    
-
-
 
     def get_all_reservations(self):
         reservations = self.model.get_all_reservations()
         return reservations
-    
-
 
     def get_user_reservations(self, user_id):
         reservations = self.model.get_user_reservations(user_id)
         return reservations
-
 
     def get_taken_timeslots(self, table, date):
         timeslots = self.model.get_timeslots_by_table_date(table, date)
 
         return [t[0] for t in timeslots]
 
-
-
     def get_reservations_by_date(self, user_id, date):
         reservations = self.model.get_timeslots_by_date(user_id, date)
         return reservations
-    
 
     def get_all_reservations_by_date(self, date):
         reservations = self.model.get_all_timeslots_by_date(date)
