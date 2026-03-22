@@ -16,11 +16,6 @@ router = APIRouter(prefix="/ws", tags=["Websocket"])
 
 VIDEO_DIR = "/app/data/test_videos/"
 MODEL_DIR = Path("/app/ai_models")
-yolo_model = YOLO(MODEL_DIR / "best.pt")
-class_names = torch.load(MODEL_DIR / "class_names.pth")
-state_dict = torch.load(
-    MODEL_DIR / "fluxia_classifier.pth", map_location=torch.device("cpu")
-)
 MARGIN = 0.3
 
 
@@ -28,10 +23,6 @@ IMG_SIZE = 224
 NORMALIZE_MEAN = [0.485, 0.456, 0.406]
 NORMALIZE_STD = [0.229, 0.224, 0.225]
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-
-classifier, transform = prepare_resnet(
-    DEVICE, state_dict, IMG_SIZE, NORMALIZE_MEAN, NORMALIZE_STD
-)
 
 
 FRAMES_SKIP = 2
@@ -42,6 +33,14 @@ async def vision_stream(websocket: WebSocket):
     await websocket.accept()
 
     VIDEO_SOURCE = choice(list(Path(VIDEO_DIR).glob("*")))
+    yolo_model = YOLO(MODEL_DIR / "best.pt")
+    class_names = torch.load(MODEL_DIR / "class_names.pth")
+    state_dict = torch.load(
+        MODEL_DIR / "fluxia_classifier.pth", map_location=torch.device("cpu")
+    )
+    classifier, transform = prepare_resnet(
+        DEVICE, state_dict, IMG_SIZE, NORMALIZE_MEAN, NORMALIZE_STD
+    )
 
     cap = cv2.VideoCapture(VIDEO_SOURCE)
 
