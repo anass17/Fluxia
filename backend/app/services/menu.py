@@ -8,7 +8,9 @@ import io
 import os
 
 
+# os.environ['SENTENCE_TRANSFORMERS_HOME'] = './.model_cache'
 # embedding_model = SentenceTransformer('BAAI/bge-m3')
+embedding_model = None
 
 
 class MenuService:
