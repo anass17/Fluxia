@@ -13,9 +13,6 @@ services:
       - ./models:/workspace/models
     ports:
       - "8888:8888"
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-    runtime: nvidia
 
   backend:
     build:
