@@ -10,7 +10,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
 
   
     // Security Check
-    await requireRole(request, ["ADMIN"]);
+    await requireRole(request, ["ADMIN", "OWNER"]);
 
 
     // Get the Client ID from the URL params ($id)

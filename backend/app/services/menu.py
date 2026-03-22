@@ -11,7 +11,7 @@ import json
 import io
 
 
-embedding_model = SentenceTransformer('BAAI/bge-m3')
+# embedding_model = SentenceTransformer('BAAI/bge-m3')
 
 
 class MenuService:

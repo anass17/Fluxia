@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useFetcher, useLoaderData, Form } from "react-router";
 import { usersService } from "~/api/users.service";
-import OwnerStaffRow from "~/components/tables/OwnerStaffRow";
+import OwnerAdminRow from "~/components/tables/OwnerAdminRow";
 import StaffCard from "~/components/ui/StaffCard";
-import StaffRow from "~/components/ui/StaffRow";
 
-interface Staff {
+
+interface Admin {
   id: string;
   first_name: string;
   last_name: string;
@@ -17,18 +17,18 @@ interface Staff {
 }
 
 export async function loader({ request }: { request: Request }) {
-  return await usersService.getStaffs(request);
+  return await usersService.getAdmins(request);
 }
 
-export default function StaffList() {
+export default function AdminList() {
   const [viewMode, setViewMode] = useState<"table" | "grid">("table");
   const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const staff = useLoaderData<Staff[]>();
+  const staff = useLoaderData<Admin[]>();
   const toggleFetcher = useFetcher(); 
   const createFetcher = useFetcher();
-  const upgradeFetcher = useFetcher();
+  const downgradeFetcher = useFetcher();
 
   // Close modal when creation is successful
   useEffect(() => {
@@ -52,18 +52,12 @@ export default function StaffList() {
             </span>
             <input
               type="text"
-              placeholder="Search staff..."
+              placeholder="Search admin..."
               className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-violet-500/20"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <button 
-            onClick={() => setIsModalOpen(true)}
-            className="bg-violet-600 cursor-pointer hover:bg-violet-700 text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 transition-all active:scale-95"
-          >
-            <PlusIcon /> <span className="hidden sm:inline">Add Staff</span>
-          </button>
         </div>
 
         <div className="flex bg-slate-100 p-1 rounded-xl">
@@ -88,7 +82,7 @@ export default function StaffList() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
-              {filteredStaff?.map((s) => <OwnerStaffRow key={s.id} staff={s} fetcher={toggleFetcher} upgradeFetcher={upgradeFetcher} />)}
+              {filteredStaff?.map((s) => <OwnerAdminRow key={s.id} staff={s} fetcher={toggleFetcher} downgradeFetcher={downgradeFetcher} />)}
             </tbody>
           </table>
         </div>

@@ -13,4 +13,13 @@ export const usersService = {
   getStaffs: (request: Request) => 
     apiFetch(request, "/users/staffs", { method: "GET" }),
 
+  getAdmins: (request: Request) => 
+    apiFetch(request, "/users/admins", { method: "GET" }),
+
+  downgradeAdmin: (request: Request, id: number) => 
+    apiFetch(request, `/users/demote/${id}`, { method: "PUT" }),
+
+  upgradeAdmin: (request: Request, id: number) => 
+    apiFetch(request, `/users/promote/${id}`, { method: "PUT" }),
+
 };

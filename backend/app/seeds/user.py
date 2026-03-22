@@ -20,24 +20,19 @@ CUSTOM_USERS = {
             "last_name": "edderkaoui",
             "email": "oussama@edd.com",
         },
+    ],
+    "STAFF": [
         {
             "first_name": "abdelhafid",
             "last_name": "ait elmokhtar",
             "email": "hafid@ait.com",
-        },
-    ],
-    "STAFF": [
-        {
-            "first_name": "staff",
-            "last_name": "staff",
-            "email": "staff@fluxia.com",
         }
     ],
     "ADMIN": [
         {
-            "first_name": "admin",
-            "last_name": "admin",
-            "email": "admin@fluxia.com",
+            "first_name": "ahmed",
+            "last_name": "taoudi",
+            "email": "ahmed@taoudi.com",
         }
     ],
 
@@ -66,6 +61,7 @@ def seed_custom_users():
             service.register_client(**owner_data)
 
             db.query(User).filter(User.email == user["email"]).update({User.role: item[0]})
+            db.commit()
     
         print(f"-> {len(item[1])} {item[0].lower()}s inserted")
 
@@ -74,12 +70,12 @@ def seed_custom_users():
 
 
 
-def seed_users(n=10):
+def seed_users(n_clients=10, n_staffs=10):
 
     db = SessionLocal()
     service = AuthService(db)
 
-    for _ in range(n):
+    for _ in range(n_clients):
 
         user_data = {
             "first_name": fake.first_name(),
@@ -91,7 +87,7 @@ def seed_users(n=10):
         service.register_client(**user_data)
 
 
-    for _ in range(n):
+    for _ in range(n_staffs):
 
         user_data = {
             "first_name": fake.first_name(),
@@ -104,6 +100,6 @@ def seed_users(n=10):
 
     db.close()
 
-    print(f"-> {n} clients inserted")
-    print(f"-> {n} staffs inserted")
+    print(f"-> {n_clients} clients inserted")
+    print(f"-> {n_staffs} staffs inserted")
 

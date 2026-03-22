@@ -1,5 +1,5 @@
 
-export type ReservationStatus = "Completed" | "Cancelled" | "Coming" | "Ongoing";
+export type ReservationStatus = "completed" | "cancelled" | "coming" | "ongoing";
 
 export interface Reservation {
   id: string;

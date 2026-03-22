@@ -15,6 +15,7 @@ export default [
         route("/owner/dashboard", "routes/owner/dashboard.tsx"),
         route("/owner/clients", "routes/owner/clients.tsx"),
         route("/owner/staffs", "routes/owner/staffs.tsx"),
+        route("/owner/admins", "routes/owner/admins.tsx"),
         route("/owner/tables", "routes/owner/tables.tsx"),
         route('/owner/calendar', "routes/owner/calendar.tsx"),
         route('/owner/reservations', "routes/owner/reservations.tsx"),
@@ -62,6 +63,8 @@ export default [
     
     // Ressource routes
     route("/admin/user/:id/toggle-status", "routes/admin/api/user_toggle_status.ts"),
+    route("/owner/user/:id/downgrade", "routes/api/user.downgrade.ts"),
+    route("/owner/user/:id/upgrade", "routes/api/user.upgrade.ts"),
     route("/admin/staff/create", "routes/admin/api/staff_create.ts"),
     route("/reservation/create", "routes/client/api/create_reservation.ts"),
     route("/reservations/timeslots", "routes/api/reservations.timeslots.ts"),

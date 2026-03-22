@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, Outlet, useLocation, useLoaderData } from "react-router";
 import { LogoutButton } from "~/components/ui/LogoutButton";
 import { requireRole } from "~/services/auth.server";
-import { MenuIcon2 } from "~/utils/icons";
+import { AdminIcon, MenuIcon2 } from "~/utils/icons";
 
 interface HeaderProps {
   user: { name: string; avatar?: string };
@@ -141,6 +141,7 @@ function Sidebar({ isCollapsed }: { isCollapsed: boolean }) {
         { name: "Menu Management", path: "/owner/menu", icon: <MenuIcon2 /> },
         { name: "Customers", path: "/owner/clients", icon: <CustomersIcon /> },
         { name: "Staff Management", path: "/owner/staffs", icon: <StaffIcon /> },
+        { name: "Admin Management", path: "/owner/admins", icon: <AdminIcon /> },
       ],
     },
     {

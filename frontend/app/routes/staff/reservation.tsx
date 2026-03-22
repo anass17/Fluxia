@@ -27,7 +27,7 @@ export default function ReservationsPage() {
   const processedReservations = useMemo(() => {
     return reservations?.filter((res) => {
         const matchesSearch = ("RES-" + res.id).toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesStatus = statusFilter === "All" || res.status === statusFilter;
+        const matchesStatus = statusFilter === "All" || res.status.toLowerCase() === statusFilter;
         return matchesSearch && matchesStatus;
       })
       .sort((a, b) => {
@@ -80,11 +80,11 @@ export default function ReservationsPage() {
 
         {/* Status Filter Chips */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 xl:pb-0 no-scrollbar">
-          {["All", "Coming", "Ongoing", "Completed", "Cancelled"].map((status) => (
+          {["All", "coming", "ongoing", "completed", "cancelled"].map((status) => (
             <button
               key={status}
               onClick={() => setStatusFilter(status as any)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap capitalize ${
                 statusFilter === status 
                 ? "bg-slate-900 text-white shadow-md" 
                 : "bg-white text-slate-500 border border-slate-100 hover:bg-slate-50"
