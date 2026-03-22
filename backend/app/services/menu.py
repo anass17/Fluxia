@@ -1,14 +1,11 @@
 from app.models.menu import MenuModel
 from app.models.query import QueryModel
-from app.db.models import Plate
-from fastapi import HTTPException, status
 from sentence_transformers import SentenceTransformer
 from app.utils.prompt import llm_prompt
 from app.utils.ollama_generate import ollama_generate
 import pandas as pd
-import requests
-import json
 import io
+import os
 
 
 # embedding_model = SentenceTransformer('BAAI/bge-m3')
