@@ -20,7 +20,7 @@ ultralytics
 scikit-image
 filterpy
 python-multipart
-# pytest
-# pytest-mock
-# requests-mock
-# httpx
+pytest
+pytest-mock
+requests-mock
+httpx

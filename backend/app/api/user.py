@@ -3,6 +3,7 @@ from app.services.user import UserService
 from app.db.deps import get_db
 from sqlalchemy.orm import Session
 from app.schemas.user import UserSchema, UserRoleUpdateResponse
+from app.core.deps import require_roles
 
 
 
@@ -14,7 +15,8 @@ router = APIRouter(prefix='/users', tags=['Users'])
 
 @router.get("", response_model=list[UserSchema])
 def get_all_users(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("ADMIN", "OWNER"))
 ):
     service = UserService(db)
 
@@ -26,7 +28,8 @@ def get_all_users(
 
 @router.get("/clients", response_model=list[UserSchema])
 def get_all_clients(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("ADMIN", "OWNER"))
 ):
     service = UserService(db)
 
@@ -38,7 +41,8 @@ def get_all_clients(
 
 @router.get("/staffs", response_model=list[UserSchema])
 def get_all_staffs(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("ADMIN", "OWNER"))
 ):
     service = UserService(db)
 
@@ -50,7 +54,8 @@ def get_all_staffs(
 
 @router.get("/admins", response_model=list[UserSchema])
 def get_all_admins(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("OWNER"))
 ):
     service = UserService(db)
 
@@ -63,7 +68,8 @@ def get_all_admins(
 @router.put("/promote/{id}")
 def promote_staff(
     id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("OWNER"))
 ):
     service = UserService(db)
 
@@ -76,7 +82,8 @@ def promote_staff(
 @router.put("/demote/{id}")
 def demote_admin(
     id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    user_id = Depends(require_roles("OWNER"))
 ):
     service = UserService(db)
 

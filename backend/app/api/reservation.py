@@ -14,7 +14,7 @@ router = APIRouter(prefix='/reservations', tags=['Reservations'])
 
 
 @router.get("", response_model=list[ReservationSchema])
-def get_all_reservations(
+def get_user_reservations(
     db: Session = Depends(get_db),
     user_id = Depends(require_roles("CLIENT"))
 ):
@@ -36,7 +36,7 @@ def get_all_reservations(
 
 
 @router.post("", response_model=ReservationSchema)
-def get_all_reservations_by_user(
+def create_reservation(
     data: CreateReservationSchema,
     db: Session = Depends(get_db),
     user_id = Depends(require_roles("CLIENT"))
