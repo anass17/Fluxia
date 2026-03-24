@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter
 from app.schemas.recipe import RecipeSchema
 from app.services.recipe_generator import RecipeGeneratorService
 from random import randint
