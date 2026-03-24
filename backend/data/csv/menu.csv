@@ -1,61 +1,61 @@
 Name,TotalTime,RecipeCategory,RecipeIngredientParts,Calories,FatContent,SaturatedFatContent,CholesterolContent,SodiumContent,CarbohydrateContent,FiberContent,SugarContent,ProteinContent,Price
-Edible Juice,5,Beverages,"unflavored gelatin, sugar",139.6,0.5,0.1,0.0,9.4,30.0,0.5,25.0,4.7,23
-Ginger Swing,1,Beverages,"blue curacao, ginger ale",0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,40
-Mexican Fizz,5,Beverages,creme de cassis,24.4,0.0,0.0,0.0,1.5,0.8,0.0,0.3,0.0,20
-Sleep Tight,10,Beverages,"milk, honey, cognac",140.7,5.6,3.5,21.4,75.3,18.8,0.0,11.6,5.0,19
-Sweet Vanilla Soymilk,2,Beverages,"soymilk, water, vanilla extract",154.8,4.7,0.6,0.0,135.1,18.5,3.2,7.7,11.0,12
-Liquid Skittles,5,Beverages,"mango rum, strawberries",509.1,1.1,0.1,0.0,5.3,27.9,7.3,17.7,2.4,19
-Champagne Lemon,1,Beverages,character(0,49.5,0.0,0.0,0.0,3.0,1.6,0.0,0.6,0.0,25
-Spicy Sparkling Cider (Cocktail),5,Beverages,"spiced rum, dark rum, sparkling apple cider, ground cinnamon, sugar, lemon juice, lime juice",165.4,0.0,0.0,0.0,0.7,13.1,0.3,12.6,0.0,27
-Cobalt Colada,10,Beverages,"cream of coconut, white rum, golden rum, blue curacao, lime juice",219.8,9.9,8.7,0.0,35.9,16.9,1.4,12.8,1.8,21
-Cassisco,5,Beverages,"brandy, creme de cassis",125.5,0.0,0.0,0.0,0.4,0.0,0.0,0.0,0.0,30
-Boiled Eggs With Broccoli Soldiers,8,Breakfast,"eggs, broccoli stems, prosciutto",125.8,8.4,2.8,327.4,125.0,0.6,0.0,0.3,11.1,18
-Creamy Philly Porridge,3,Breakfast,"milk, cream cheese, golden syrup, honey, cinnamon",282.9,13.6,7.7,41.6,133.8,29.0,2.9,0.5,11.9,41
-Green Eggs and Ham in a Tortilla,5,Breakfast,"eggs, salt, pepper, margarine, ham, tortillas",437.9,21.6,6.3,437.7,946.7,37.2,2.2,2.1,21.8,13
-Oatmeal Pancake for 1,10,Breakfast,"oats, sugar substitute, cinnamon",285.8,2.9,0.5,0.0,165.7,47.1,5.4,17.7,17.9,24
-Quick Healthy Tasty Breakfast,5,Breakfast,"avocado, low fat cottage cheese, blueberries",303.8,17.1,3.5,9.0,466.5,23.2,8.5,8.3,18.1,30
-Creamy Greens Smoothie,5,Breakfast,"light coconut milk, yogurt, bananas, kale leaves, flax seeds, nutritional yeast flakes",193.8,3.9,1.6,8.0,31.6,38.8,4.1,23.6,4.3,44
-Banana-Chocolate French Toast,15,Breakfast,"low-fat milk, eggs, vanilla extract, sugar, salt, banana, canola oil, powdered sugar",315.7,12.3,7.3,93.8,315.5,43.0,3.0,19.9,8.1,34
-Tvp Honey Nuggets,10,Breakfast,honey,31.9,0.0,0.0,0.0,0.4,8.7,0.0,8.6,0.0,16
-Western Sandwich - James Bond,10,Breakfast,"egg, onion, cooked ham",427.4,12.3,3.4,273.7,669.7,59.8,2.9,3.0,18.0,14
-Solo Ww Oatmeal (Microwave Method),7,Breakfast,"quick-cooking oats, old fashioned oats, Splenda granular, cinnamon, salt, water, apple, cinnamon, non-fat powdered milk, raisins",156.3,2.6,0.5,0.0,160.3,27.4,4.1,0.6,6.5,32
-Chocolate Sour Cream Frosting - C &amp; H Sugar,5,Dessert,"powdered sugar, sour cream, salt, vanilla",291.9,10.2,6.1,6.5,20.9,49.2,1.9,44.5,1.7,22
-Bowl of Berries,10,Dessert,"strawberry, blueberries, raspberries, blackberry, fresh lemon zest, fresh lemon juice",76.7,0.7,0.0,0.0,1.8,18.5,5.5,11.1,1.5,11
-Vegan Coconut Custard,10,Dessert,"coconut milk, sugar, cornstarch, vanilla extract",324.4,21.0,18.6,0.0,60.0,33.9,2.7,24.0,3.2,7
-Creamy Maple Fondue from Quebec,13,Dessert,"maple syrup, cornstarch, cold water, heavy cream, dark rum",441.3,22.1,13.7,81.5,32.7,58.1,0.0,47.7,1.3,46
-Super Simple Donut Holes,10,Dessert,"butter flavor shortening, sugar, cinnamon",289.6,8.0,2.0,0.0,649.5,52.0,1.8,29.4,3.7,36
-Sinful Dum-Dum,10,Dessert,"pineapple, Cool Whip",334.1,7.9,4.9,30.3,114.2,61.1,1.4,57.8,7.6,6
-Pine-Orange Cream,5,Dessert,"instant pudding mix, milk, crushed pineapple, Cointreau liqueur, Grand Marnier",352.3,17.7,12.0,48.1,272.7,45.8,1.0,39.6,5.0,7
-Georgia Peach Buttercream Frosting,15,Dessert,"butter, powdered sugar",4810.9,139.4,87.7,366.0,989.7,918.6,2.4,901.5,2.9,26
-Pumpkin Parfait,15,Dessert,"pumpkin, brown sugar, pumpkin pie spice, fat-free granola",121.0,1.8,1.5,0.2,18.7,26.5,0.5,21.8,1.2,6
-Salt Water Buttercream,11,Dessert,"warm water, salt, butter, vanilla, powdered sugar",879.8,46.0,29.1,122.0,698.6,120.0,0.0,117.7,0.5,32
-Nutty Pineapple Nibbles ( Stuffed Celery),10,Lunch/Snacks,"celery ribs, light cream cheese, creamy peanut butter, honey",155.6,10.2,3.8,14.4,171.9,13.7,2.3,5.1,4.8,10
-Nif's Crunchy Party Nuts,15,Lunch/Snacks,"water, granulated sugar, chili powder, ground cumin, garlic powder, ground cayenne pepper, fresh ground black pepper, sea salt",83.2,0.5,0.1,0.0,1587.8,19.1,0.9,17.1,1.8,29
-Tofu and Apple Pita,13,Lunch/Snacks,"firm tofu, apple, light cream cheese, garlic powder",333.5,10.4,3.5,10.8,413.0,47.8,7.6,8.6,18.3,45
-Rice Krispie Cakes,3,Lunch/Snacks,baking chocolate,80.2,7.4,4.6,0.0,16.7,6.2,2.4,0.3,2.0,5
-French Fried Pickles,6,Lunch/Snacks,"Bisquick, egg, milk, water, dill pickle slices",110.9,4.7,1.5,38.5,276.8,13.7,0.4,2.4,3.3,15
-Mediterranean Tuna Sandwiches,10,Lunch/Snacks,"olive oil, tuna in water, sun-dried tomato packed in oil, green olives, ripe olives, red onions, Spanish onion, red bell pepper, mayonnaise, low-fat mayonnaise, capers, fresh ground black pepper, romaine lettuce leaves, lettuce leaves",338.1,11.7,2.1,37.5,801.9,28.5,5.5,4.7,29.4,18
-Sweet Temptations Snack Mix,2,Lunch/Snacks,"peanuts, raisins",592.5,38.0,6.6,3.1,118.3,53.5,8.0,36.9,17.7,21
-Pepperoni Sandwich,5,Lunch/Snacks,"American cheese, parmesan cheese, pre-shredded mozzarella cheese",477.4,26.0,12.3,69.8,1347.4,38.1,3.3,7.4,23.7,7
-Couscous Tacos,15,Lunch/Snacks,"onion, diced tomatoes, water, firm tofu, extra firm tofu, couscous",785.9,20.7,3.3,0.0,731.2,127.3,13.8,10.4,27.1,39
-Chicken Tortilla Soup (Vita Mix),10,Lunch/Snacks,"hot water, green onion, green pepper, zucchini, cheddar cheese, chicken bouillon cube, carrot, celery, roma tomatoes, serrano chili, cumin, garlic clove, cooked brown rice, black olives, black beans",100.3,1.4,0.3,6.2,377.8,16.9,4.0,3.0,6.4,22
-Beef Patties With Beefy Mushroom Gravy,15,Meat,"ground beef, egg",445.5,28.8,11.3,172.3,757.1,6.9,0.3,0.3,37.1,10
-Baked Mexican Casserole,15,Meat,"hamburger, picante salsa, cream cheese, black olives, cheddar cheese, monterey jack cheese, water",116.4,9.0,4.9,32.2,207.1,1.6,0.3,0.7,7.2,35
-Chipotle Grilled Steaks,11,Meat,TABASCO® brand Chipotle Pepper Sauce,6.8,0.4,0.1,0.0,359.2,0.5,0.3,0.0,0.7,9
-DELICIOUS & Easy Steak,14,Meat,"season salt, salt, pepper, garlic powder",1222.1,77.3,31.2,456.0,316.2,0.0,0.0,0.0,123.4,10
-Cyn's Rib Rub,5,Meat,"brown sugar, paprika, chili powder, cumin, cayenne, dry mustard, kosher salt",298.5,5.8,0.7,0.0,11562.9,64.5,10.1,45.3,6.5,27
-Mom's Brisket Burgers,15,Meat,"beef brisket, garlic cloves, garlic, Worcestershire sauce",363.5,30.1,12.1,82.8,197.7,2.7,0.0,1.3,19.3,45
-Catherine's Mini Ham Square Appetizers,5,Meat,"ham, cream cheese, horseradish, dry mustard, lettuce",169.6,15.4,8.1,49.6,414.7,1.4,0.1,0.2,6.5,43
-Rib Marinade,13,Meat,"soy sauce, Worcestershire sauce, dry mustard, salt, black pepper, wine vinegar, parsley, lemon juice, garlic",919.3,95.4,12.2,0.0,5302.9,13.3,2.1,4.0,8.5,26
-Creamy Chipped Beef Fondue,15,Meat,"milk, cream cheese, green onion, ground mustard",106.2,5.9,3.5,22.3,318.8,8.5,0.5,0.3,4.8,39
-Chalupa Joes,13,Meat,"ground beef, soy sauce, olive oil, Dijon mustard, lemon-pepper seasoning, garlic powder, ground nutmeg, ground cardamom, monterey jack cheese, green onion",375.8,21.1,8.7,68.2,986.5,22.8,2.1,1.8,23.4,14
-Kam Kreation Spanish Rice,15,Rice,"rotel, cooked white rice",256.7,0.5,0.1,0.0,397.9,56.8,0.6,0.0,5.1,40
-Wieners and Rice,15,Rice,"celery, onion, soy sauce",396.8,13.9,5.4,23.9,692.6,55.5,1.5,2.2,10.5,46
-Bell Pepper Rice Wedges,10,Rice,"green pepper, onion, chili powder, cumin, diced tomatoes, cooked rice, monterey jack cheese, cheddar cheese, fresh cilantro",128.3,4.9,2.9,13.7,98.7,16.2,1.8,2.7,5.5,18
-Aunt Clara's Rice Balls,15,Rice,"cooked rice, egg, parsley, parmesan cheese, mozzarella cheese, egg, flour",411.6,11.4,5.8,120.9,363.3,56.8,1.5,1.0,18.3,44
-Japanese  Rice  Side  Dish,10,Rice,"cooked pork, green beans, eggs, soy sauce, margarine, chicken broth",171.0,6.5,1.4,105.8,233.2,21.0,0.9,0.6,6.5,34
-Rice and Tomatoes With Cumin,12,Rice,"cooked rice, diced tomatoes, ground cumin",141.7,0.6,0.1,0.0,6.3,30.8,1.6,2.6,3.2,17
-Salad Andalusia,5,Rice,"shallots, parsley, Dijon mustard, garlic clove, red wine vinegar, olive oil, hard-boiled egg, tomatoes, bell peppers, red onion, cooked white rice",367.7,29.1,4.3,47.2,69.3,23.4,2.7,4.7,4.7,28
-Rice Seasoning Mix,5,Rice,"chicken bouillon granule, dried parsley, basil, dill weed, seasoning salt, garlic powder, lemon pepper seasoning",554.9,41.4,4.1,4.8,8989.9,30.9,10.0,12.2,23.3,41
-Rice With Tomato &amp; Basil in Less Than 20 Min,12,Rice,"basmati rice, roma tomatoes, basil, olive oil, kosher salt, water",209.5,4.8,0.8,0.0,444.0,37.4,2.4,1.2,4.2,48
-Klatkage -- Finnish Rice Fritters,13,Rice,"rice, eggs, raisins, lemon zest, all-purpose flour, unsalted butter, powdered sugar",381.9,16.6,8.3,136.3,51.8,49.9,1.5,5.3,8.1,29
+V 8 Juice(Juicer),10,Beverages,"carrots, celery, tomatoes, fresh spinach, parsley, scallion, beet, garlic clove, oregano, tomato paste, Tabasco sauce",95.1,0.8,0.1,0.0,149.9,21.0,6.7,11.4,3.6,9
+Mexican Hot Chocolate With Coconut Whipped Cream,15,Beverages,"milk, cocoa powder, sugar, cinnamon, nutmeg, cayenne, vanilla extract, salt, coconut milk, powdered sugar, vanilla extract",644.9,26.5,21.8,34.2,157.9,97.6,3.3,79.1,10.8,34
+Tom &amp; Jerry,10,Beverages,"powdered sugar, ground allspice, ground cinnamon, ground cloves, brandy, dark rum, hot water, milk, coffee, nutmeg",115.7,3.2,1.1,124.5,47.8,7.2,0.3,6.1,4.6,41
+Infused Water,10,Beverages,"strawberry, blueberries, blackberry, raspberries, pineapple, mango, lemon, lime, grapefruit, orange, watermelon, cantaloupe, honeydew, pear, apple, grapes, plum, cucumber, carrot, celery, ginger, cinnamon, sage, rosemary, basil, cilantro",0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,41
+Love Tea,15,Beverages,"fresh lemongrass, fresh ginger, cinnamon stick, cardamom pods, anise seed, cloves, dried peppermint, tea, honey, rose water",21.1,0.1,0.0,0.0,0.6,5.4,0.1,4.3,0.2,25
+Muesli With Strawberries and Hazelnuts,10,Beverages,"rolled oats, sultana, low-fat milk, green apple, fresh lemon juice, hazelnuts, sesame seeds, strawberries, plain low-fat yogurt, clear honey",319.3,9.4,1.5,4.2,45.7,55.6,5.6,35.2,8.7,21
+"Cooler Sodas, Berry Mashes , Milkshakes(On the Road Recipe)",5,Beverages,"strawberries, blueberries, half-and-half, milk, sugar, Splenda sugar substitute, ginger ale, strawberries, blueberries, sugar, Splenda sugar substitute, half-and-half cream, milk, strawberries, blueberries, sugar, Splenda sugar substitute, half-and-half cream, milk, vanilla ice cream",798.0,47.8,28.6,150.2,366.4,82.0,12.8,38.5,16.2,27
+Coffee Grog,15,Beverages,"butter, brown sugar, ground allspice, ground cloves, ground nutmeg, ground cinnamon, dark rum, lemon peel, heavy cream, half-and-half, coffee",222.3,12.9,8.1,45.9,30.6,10.5,0.0,8.9,0.8,44
+Eggnog With Soymilk,5,Beverages,"eggs, soymilk, sugar, sugar substitute, vanilla, cinnamon, nutmeg, ground cloves, allspice, pumpkin pie spice",393.5,13.6,2.8,186.0,321.0,45.1,3.7,32.5,22.3,23
+Burnt Rosemary Orange Spritz,15,Beverages,"lemons, granulated sugar, rosemary sprigs, water, lemon juice, sparkling water, orange, Bacardi 151 rum, rosemary sprig, rosemary sprig, orange",213.6,0.2,0.0,0.0,8.9,27.2,1.3,20.7,0.7,46
+Breakfast Oats &amp; Fruit,10,Breakfast,"old fashioned oats, water, banana, wheat germ, ground flax seeds, frozen blueberries, berries, raisins, flax seeds, wheat germ, coconut",215.9,2.2,0.5,0.0,13.8,47.1,6.5,15.3,6.0,27
+Tex-Mex Migas,15,Breakfast,"eggs, salsa, olive oil, onion, corn tortillas, cheese, salsa, pico de gallo, cheese, sour cream, avocado, cilantro, scallion, tortilla",378.2,24.4,8.5,441.1,623.0,19.9,2.7,3.7,20.4,31
+Cranberry Chocolate Oatmeal,15,Breakfast,"oats, soymilk, water, almond butter, cranberries, cranberries, raisins, honey, cinnamon, dark chocolate",412.3,20.8,6.1,0.0,112.7,51.6,8.9,13.2,13.9,27
+"Very Healthy Oatmeal, Rhubarb, Orange and Ginger Pudding",10,Breakfast,"oatmeal, oatmeal, vanilla flavoring, rhubarb, rhubarb, ground ginger, Splenda sugar substitute, sugar, baking soda, cream of tartar, caraway seed, milk, milk, marmalade, marmalade, nonfat yogurt",342.7,4.3,0.8,2.1,711.6,63.4,9.7,16.1,15.2,34
+Fresh Cranberry Waffles With Orange Butter Sauce,15,Breakfast,"nonfat yogurt, low fat cottage cheese, low-fat buttermilk, pure vanilla extract, unbleached flour, baking powder, sugar, fresh cranberries, butter, honey, orange zest",969.7,21.1,7.9,35.2,891.8,166.8,5.4,109.8,33.5,23
+Banana-Coconut Pancakes,15,Breakfast,"all-purpose flour, baking powder, cinnamon, baking soda, salt, sweetened flaked coconut, light brown sugar, butter, bananas, buttermilk, vanilla",430.1,21.6,14.9,41.9,606.4,55.9,3.3,24.4,5.5,36
+Apple Cinnamon Buttermilk Pancakes,15,Breakfast,"baking soda, flour, baking powder, brown sugar, salt, ground cinnamon, eggs, buttermilk, sour cream, butter, margarine, apple",515.2,21.1,12.0,142.1,1337.6,68.7,3.4,18.2,13.5,5
+Blueberry-Bananas Pancakes,15,Breakfast,"all-purpose flour, all-purpose flour, baking powder, sugar, salt, bananas, milk, vanilla extract, sour cream, blueberries",671.2,10.9,6.1,29.3,1614.0,126.4,6.9,24.9,17.9,23
+Tunisian  Omelet,15,Breakfast,"eggs, ground sausage, beef, onion, garlic clove, caraway seed, paprika, olive oil, cayenne, green pepper",403.2,31.5,9.1,412.8,506.1,7.1,1.6,3.0,22.1,42
+Low Fat Chorizo,10,Breakfast,"ground chicken, ground turkey, crushed red pepper flakes, dried chipotle chile, chili powder, cumin, garlic powder, salt, pepper, vinegar",97.3,2.6,0.6,53.0,459.0,1.1,0.5,0.2,16.4,32
+SCD Chewy Monster Cookies,15,Dessert,"unsalted butter, honey, egg, baking soda, salt, ground cinnamon, vanilla extract, raisins, walnuts, pecans",835.4,51.7,24.1,107.5,391.7,96.9,4.8,84.7,8.3,36
+Honey-Glazed Beehive Cake,15,Dessert,"cake flour, cake flour, baking powder, baking soda, salt, ground cinnamon, ground cloves, unsalted butter, light brown sugar, honey, vanilla, eggs, cream of tartar, honey, unsalted butter, vanilla, water, confectioners' sugar, marzipan, almond paste",764.9,26.9,14.5,183.4,451.2,124.8,1.7,86.9,10.1,22
+Apple Cobblers Cookies,10,Dessert,"butter, dark brown sugar, egg, ground cloves, ground cinnamon, ground nutmeg, salt, baking soda, all-purpose flour, milk, golden raisin, pecans, apple",336.3,15.1,5.7,38.7,276.2,49.2,2.3,31.2,3.9,14
+High Tea Lemon Cookies,15,Dessert,"butter, powdered sugar, lemon zest, vanilla extract, flour, cornstarch, butter, lemon zest, fresh lemon juice, powdered sugar",254.8,14.4,9.1,38.0,102.7,31.1,0.3,18.4,1.0,17
+Fruit Salad With Creamy Banana Dressing,15,Dessert,"pineapple chunks, cantaloupe, honeydew melon, blackberry, strawberry, red grapes, apple, bananas, honey, lemon juice, nutmeg",133.5,0.5,0.1,0.0,9.3,34.3,3.7,27.4,1.5,47
+Diner-Style Strawberry Shortcake,2,Dessert,"flour, baking powder, salt, skim milk, unsalted butter, vanilla extract, eggs, sugar, fresh strawberries, gelatin, heavy cream, confectioners' sugar, vanilla extract",369.9,19.2,11.4,115.2,185.8,44.7,1.6,28.9,5.2,43
+Beves' Yummy Low Fat Lemon Dessert,10,Dessert,"low-fat graham cracker, fat free cream cheese, reduced-fat cream cheese, powdered sugar, vanilla, lemon juice, lemon flavor instant pudding and pie filling, low-fat milk, nonfat milk, Cool Whip",162.2,5.4,4.5,3.0,231.4,24.9,0.0,15.8,4.0,36
+Black Bean Donuts,15,Dessert,"black beans, baking powder, baking soda, apple cider vinegar, vanilla, cocoa powder, salt, artificial sweetener, sugar, egg, applesauce, peanut butter, powdered sugar, milk, vanilla",107.5,1.8,0.6,16.0,195.9,20.6,3.4,10.1,4.0,20
+Holiday Molasses Cookies,15,Dessert,"all-purpose flour, baking soda, salt, ginger, cinnamon, shortening, sugar, molasses, egg, boiling water, vinegar",77.8,2.3,0.6,4.4,93.1,13.4,0.2,6.0,0.9,14
+Bananas Foster Crunch Cake,15,Dessert,"butter, margarine, granulated sugar, eggs, light rum, vanilla extract, all-purpose flour, cornmeal, baking powder, salt, all-purpose flour, pecans, brown sugar, butter, margarine",521.2,18.5,9.5,73.8,316.9,82.0,3.8,41.2,6.5,5
+Turkey Gyros,15,Lunch/Snacks,"turkey breast tenderloin, olive oil, cucumber, reduced-fat sour cream, onion, dill weed, lemon juice, lettuce, tomatoes, feta cheese",286.5,8.6,4.5,57.2,355.9,31.2,2.2,3.6,21.1,38
+Curried Tofu Egg Salad Sandwich,10,Lunch/Snacks,"soft tofu, mayonnaise, curry powder, turmeric, onions, carrots, carrots, celery & leaves, salt, garlic powder, fresh basil leaves, cucumbers, fresh ground black pepper, mayonnaise, yellow mustard",140.1,9.2,1.4,3.8,270.8,8.6,1.0,3.0,8.1,19
+Guacamole Grilled Cheese Sandwich,12,Lunch/Snacks,"avocados, onion, garlic clove, cilantro leaves, fresh lime juice, coarse salt, black pepper, roma tomato, cheddar cheese, butter",702.8,49.8,16.5,58.8,1202.3,48.5,16.0,5.8,22.6,6
+Curried Tofu Cutlets,10,Lunch/Snacks,"flour, curry powder, dried thyme, dried sage, pepper, salt, firm tofu, olive oil, butter, lemon",342.4,30.1,10.2,30.5,271.8,11.6,2.6,1.5,10.7,12
+Tuna or Chicken  Melt,6,Lunch/Snacks,"English muffins, green onion, mayonnaise, Lea & Perrins Worcestershire Sauce, horseradish, mustard, cayenne pepper, solid white tuna, tomatoes, sharp cheddar cheese",614.1,30.7,9.5,76.8,1234.2,37.0,3.1,6.4,46.9,39
+Chicken Salad Croissants,15,Lunch/Snacks,"celery, raisins, dried cranberries, mayonnaise, salt, pepper, fresh parsley, prepared mustard, lemon juice, lettuce leaves",571.3,32.8,10.1,100.9,784.4,46.0,3.3,15.3,24.5,43
+Herb Garlic Beans,15,Lunch/Snacks,"olive oil, onion, celery, carrot, garlic clove, red kidney beans, black beans, pinto beans, canned whole tomatoes, fresh thyme, white wine",700.5,11.6,1.7,0.0,74.4,113.3,38.3,3.9,40.0,32
+Easy Vegan Bean Spread,15,Lunch/Snacks,"yellow onion, olive oil, garlic clove, celery, green bell pepper, tomato paste, white vinegar, salt, fresh ground pepper, fresh parsley, fresh lemon juice, cumin, cilantro leaf, cayenne",125.6,9.2,1.3,0.0,580.7,10.4,2.4,5.3,1.8,7
+Sun-Dried Tomato Hummus Dip or Sandwich (Cinch! Friendly),10,Lunch/Snacks,"celery ribs, cherry tomatoes, carrot, green pepper, sun-dried tomatoes, garbanzo beans, tahini, olive oil, lemon juice, lemon zest, garlic clove, coarse black pepper, paprika, fresh dill",458.4,16.5,2.3,0.0,755.4,67.0,13.8,10.6,14.8,6
+Tuna and Chickpea Salad,10,Lunch/Snacks,"tuna in olive oil, chickpeas, cherry tomatoes, red onion, flat leaf parsley, mint, olive oil, red wine vinegar, brown sugar, sea salt, cracked black pepper",593.2,24.8,3.5,32.9,1046.8,53.0,11.4,4.0,40.1,24
+LONDON BROIL WITH CREAMY HORSERADISH SAUCE,15,Meat,"garlic cloves, fresh lemon juice, Worcestershire sauce, red wine, soy sauce, honey, top round beef, sour cream, Dijon mustard, Worcestershire sauce, cider vinegar, fresh chives",321.2,16.5,7.4,112.8,383.0,6.3,0.5,4.4,33.2,17
+Savory Hamburger Soup,10,Meat,"carrot, onions, water, lean ground beef, tomato sauce, water, dry red wine, sugar, salt, garlic powder, pepper, cheddar cheese",294.2,14.0,6.1,81.1,1079.4,12.8,3.1,8.5,26.6,7
+Beef &amp; Scallop Stir-Fry,11,Meat,"garlic, beef, red pepper flakes, sea scallops, red pepper flakes, green onions, water, fresh ginger, white pepper, salt",895.4,87.7,34.7,132.8,950.4,5.4,0.9,0.8,20.2,29
+Spicy Steak Fajitas - Mexico,14,Meat,"flour tortillas, lime juice, olive oil, red bell pepper, green bell pepper, red onion, red pepper flakes, chili powder, salt, salsa, sour cream, avocados",473.2,21.1,6.9,102.2,986.9,33.1,6.0,8.4,39.3,18
+Juicy and Spicy Marinade (Pollo and Carne Asada),10,Meat,"garlic cloves, lemon, juice and zest of, lime, juice and zest of, orange, juice and zest of, low sodium chicken broth, olive oil, sea salt, fresh ground black pepper, crushed red pepper flakes, Worcestershire sauce, ground cumin, oregano",84.5,3.9,0.6,0.0,1341.0,13.2,2.4,2.5,1.6,6
+Kai Bi (Korean Style Grilled Short Ribs),15,Meat,"kosher salt, low sodium soy sauce, onion, garlic cloves, fresh ginger, honey, green onions, rice wine, fresh ground black pepper, water",1000.7,84.6,36.1,172.4,1208.2,23.5,2.1,16.6,35.2,18
+Pan-Seared Burgers,15,Meat,"egg, cold water, beef broth, onion, garlic clove, Dijon mustard, prepared mustard, salt, fresh ground pepper, lean ground beef, canola oil",253.1,13.0,5.1,120.2,462.0,6.8,0.7,1.1,25.5,40
+Hong Kong Burgers,15,Meat,"ground beef, bean sprouts, soy sauce, onion powder, garlic powder, pepper, cheese slices, cheddar cheese, lettuce, tomatoes, chili sauce, mayonnaise",643.3,33.9,13.3,113.7,1347.1,43.4,3.6,6.8,40.2,6
+Zesty Burgers,15,Meat,"beef, water, instant beef bouillon, lemon, rind of, lemon juice, salt, sage, ginger, pepper",1604.9,161.9,67.1,224.7,780.5,13.9,1.1,1.2,21.2,32
+"Big John's Mid-Eastern Beef Skewers ( Kabab, Kebab )",15,Meat,"ground beef, egg, garlic cloves, onion, fresh parsley, salt, oregano, black pepper, thyme, cumin",262.5,17.9,6.9,112.4,475.5,1.5,0.2,0.4,22.4,46
+Peanut Sauce Vegetable Stir Fry With Tofu,15,Rice,"head broccoli, red bell pepper, mushrooms, extra firm tofu, hot water, vinegar, soy sauce, peanut butter, cayenne pepper, cooked rice",529.0,24.2,4.7,0.0,714.0,60.1,7.8,7.4,24.5,42
+Honey Dijon Almond Couscous,10,Rice,"water, israeli couscous, olive oil, red onion, red bell pepper, carrot, raisins, ground turmeric, ground cinnamon, honey, Dijon mustard, lemon zest",316.8,7.3,1.0,0.0,58.3,57.7,3.7,20.0,6.5,50
+Southern Indian Lemon Rice With Peanuts,10,Rice,"black mustard seeds, Urad Dal, channa dal, serrano chili, curry leaves, turmeric, hing, cooked white rice, salt, roasted peanuts, cilantro",559.6,21.9,2.9,0.0,114.4,79.7,3.7,1.6,11.1,19
+Insalata Di Riso (Rice Salad),15,Rice,"rice, tuna, fontina, swiss cheese, capers, tomatoes, mushroom, peas, hard-boiled eggs, parsley, olive oil, lemon juice",586.3,26.5,8.3,54.5,388.1,59.5,1.4,0.6,25.5,27
+Steamed Asparagus With Ginger Garlic Sauce,15,Rice,"asparagus, cornstarch, water, soy sauce, sherry wine, sugar, salt, ginger, garlic, sesame seeds, cooked rice",159.8,7.5,1.1,0.0,828.7,16.6,5.6,4.4,7.7,41
+Screeching Black Cat Salad,10,Rice,"black rice, wild rice, carrots, golden raisin, raisins, lemon juice, salt, chili powder, ground cumin, ground coriander, green leaf lettuce",466.7,1.4,0.3,0.0,354.4,105.5,6.6,14.8,8.7,27
+Asian Twisted Rice Salad,10,Rice,"rice, carrot, green onions, scallion, celery, apple, water chestnut, peas, snow peas, spinach, tamari, lime juice, grapefruit juice, garlic clove",933.0,38.2,5.4,0.0,532.8,130.9,6.5,7.0,17.0,24
+Mardi Gras Rice,15,Rice,"cooked rice, frozen green pea, frozen corn, red cabbage, green pepper, green onions, parsley, mayonnaise, curry powder, lettuce leaf",152.6,0.4,0.1,0.0,26.2,33.3,2.0,1.9,3.9,13
+Cinnamon Curry Rice,15,Rice,"onions, potatoes, carrot, apple, curry powder, flour, garlic, water, butter, rice, cinnamon",3892.1,94.2,39.2,269.6,630.4,647.4,42.6,39.6,110.7,22
+Rainbow Rice (Fried Rice),2,Rice,"cooked rice, pork, shrimp, egg, green onions, salt, broth, water, light soy sauce, white pepper",421.4,16.8,3.3,106.1,4238.5,57.4,1.6,1.1,9.3,37

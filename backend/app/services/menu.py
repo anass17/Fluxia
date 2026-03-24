@@ -1,7 +1,7 @@
 from app.models.menu import MenuModel
 from app.models.query import QueryModel
 
-# from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer
 from app.utils.prompt import llm_prompt
 from app.utils.ollama_generate import ollama_generate
 import pandas as pd
@@ -11,8 +11,8 @@ import io
 
 
 # os.environ['SENTENCE_TRANSFORMERS_HOME'] = './.model_cache'
-# embedding_model = SentenceTransformer('BAAI/bge-m3')
-embedding_model = None
+embedding_model = SentenceTransformer('BAAI/bge-m3')
+# embedding_model = None
 
 
 class MenuService:

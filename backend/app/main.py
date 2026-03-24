@@ -11,6 +11,7 @@ from app.api.reservation import router as reservation_router
 from app.api.menu import router as menu_router
 from app.api.chat import router as chat_router
 from app.api.stats import router as stats_router
+from app.api.generator import router as generator_router
 from app.api.websocket import router as ws_router
 import app.db.models  # noqa: F401
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST, Counter, Histogram
@@ -49,6 +50,7 @@ app.include_router(reservation_router)
 app.include_router(menu_router)
 app.include_router(chat_router)
 app.include_router(stats_router)
+app.include_router(generator_router)
 app.include_router(ws_router)
 
 
