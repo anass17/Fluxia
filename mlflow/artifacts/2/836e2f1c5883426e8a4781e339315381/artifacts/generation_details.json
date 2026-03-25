@@ -1,0 +1,36 @@
+{
+  "Query": "Can you suggest some plates that contain onion ?",
+  "Answer": "Here are the plates that contain onion:\n\n* Plate: Herb Garlic Beans\n* Plate: Cinnamon Curry Rice\n* Plate: Easy Vegan Bean Spread\n* Plate: Guacamole Grilled Cheese Sandwich",
+  "Context": [
+    {
+      "name": "Herb Garlic Beans",
+      "category": "Lunch/Snacks",
+      "ingredients": "olive oil, onion, celery, carrot, garlic clove, red kidney beans, black beans, pinto beans, canned whole tomatoes, fresh thyme, white wine",
+      "price": 32
+    },
+    {
+      "name": "Cinnamon Curry Rice",
+      "category": "Rice",
+      "ingredients": "onions, potatoes, carrot, apple, curry powder, flour, garlic, water, butter, rice, cinnamon",
+      "price": 22
+    },
+    {
+      "name": "Easy Vegan Bean Spread",
+      "category": "Lunch/Snacks",
+      "ingredients": "yellow onion, olive oil, garlic clove, celery, green bell pepper, tomato paste, white vinegar, salt, fresh ground pepper, fresh parsley, fresh lemon juice, cumin, cilantro leaf, cayenne",
+      "price": 7
+    },
+    {
+      "name": "Guacamole Grilled Cheese Sandwich",
+      "category": "Lunch/Snacks",
+      "ingredients": "avocados, onion, garlic clove, cilantro leaves, fresh lime juice, coarse salt, black pepper, roma tomato, cheddar cheese, butter",
+      "price": 6
+    },
+    {
+      "name": "Asian Twisted Rice Salad",
+      "category": "Rice",
+      "ingredients": "rice, carrot, green onions, scallion, celery, apple, water chestnut, peas, snow peas, spinach, tamari, lime juice, grapefruit juice, garlic clove",
+      "price": 24
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+
+        SYSTEM INSTRUCTION:
+
+        - You are an assistant STRICTLY limited to the provided information.
+
+        ABSOLUTE RULES:
+
+        - Use ONLY the information explicitly present in the provided material.
+        - Do NOT infer missing information.
+        - Do NOT use external knowledge.
+        - If the information is not explicitly present, consider it unknown.
+
+        PROHIBITIONS:
+
+        - No assumptions.
+        - No extrapolation.
+        - No generalization.
+        - No implicit knowledge.
+        - Do NOT reference the source of the information.
+
+        STYLE CONSTRAINTS:
+
+        - Never mention words such as “context”, “provided context”, “information above”, “document”, or “source”.
+        - Respond directly with the answer only.
+        - Do not explain where the information comes from.
+        - Do not justify the answer.
+
+        MANDATORY PROCEDURE:
+
+        Before answering:
+        
+        1. Verify that the answer is directly supported by the CONTEXT.
+        2. If the answer requires information that is missing → REFUSE.
+        
+        IF THE CONTEXT IS INSUFFICIENT:
+        
+        Respond EXACTLY with:
+
+        - The available information does not allow answering this question.
+
+        RESPONSE STYLE:
+
+        - Concise answer
+        - Factual
+        - No additions
+        - English only
+
+        CONTEXT:
+
+        Plate: Herb Garlic Beans | Category: Lunch/Snacks | Ingredients: olive oil, onion, celery, carrot, garlic clove, red kidney beans, black beans, pinto beans, canned whole tomatoes, fresh thyme, white wine
+
+Plate: Cinnamon Curry Rice | Category: Rice | Ingredients: onions, potatoes, carrot, apple, curry powder, flour, garlic, water, butter, rice, cinnamon
+
+Plate: Easy Vegan Bean Spread | Category: Lunch/Snacks | Ingredients: yellow onion, olive oil, garlic clove, celery, green bell pepper, tomato paste, white vinegar, salt, fresh ground pepper, fresh parsley, fresh lemon juice, cumin, cilantro leaf, cayenne
+
+Plate: Guacamole Grilled Cheese Sandwich | Category: Lunch/Snacks | Ingredients: avocados, onion, garlic clove, cilantro leaves, fresh lime juice, coarse salt, black pepper, roma tomato, cheddar cheese, butter
+
+Plate: Asian Twisted Rice Salad | Category: Rice | Ingredients: rice, carrot, green onions, scallion, celery, apple, water chestnut, peas, snow peas, spinach, tamari, lime juice, grapefruit juice, garlic clove
+
+        QUESTION:
+
+        Can you suggest some plates that contain onion ?
+
+        ANSWER:
+    

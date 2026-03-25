@@ -6,10 +6,6 @@ from app.schemas.menu import MenuSchema, QuerySchema
 from app.core.deps import require_roles
 import mlflow
 
-mlflow.set_tracking_uri("http://mlflow:5000")
-mlflow.set_experiment("Fluxia")
-
-
 EMBEDDING_MODEL = "BAAI/bge-m3"
 EMBEDDING_SIZE = 1024
 TOP_K = 5
@@ -60,6 +56,9 @@ def get_answer_to_query(
 
 @router.post("/chat/mlflow")
 def log_to_mlflow(data: QuerySchema, db: Session = Depends(get_db)):
+
+    mlflow.set_tracking_uri("http://mlflow:5000")
+    mlflow.set_experiment("Fluxia")
 
     with mlflow.start_run(run_name="rag_system"):
         mlflow.log_param("EMBEDDING_MODEL", EMBEDDING_MODEL)
