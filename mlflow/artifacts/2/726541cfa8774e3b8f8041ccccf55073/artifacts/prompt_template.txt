@@ -1,10 +1,4 @@
-import mlflow
 
-
-@mlflow.trace()
-def llm_prompt(query, context):
-
-    prompt = f"""
         SYSTEM INSTRUCTION:
 
         - You are an assistant STRICTLY limited to the provided information.
@@ -53,13 +47,19 @@ def llm_prompt(query, context):
 
         CONTEXT:
 
-        {context}
+        Plate: Herb Garlic Beans | Category: Lunch/Snacks | Ingredients: olive oil, onion, celery, carrot, garlic clove, red kidney beans, black beans, pinto beans, canned whole tomatoes, fresh thyme, white wine
+
+Plate: Cinnamon Curry Rice | Category: Rice | Ingredients: onions, potatoes, carrot, apple, curry powder, flour, garlic, water, butter, rice, cinnamon
+
+Plate: Easy Vegan Bean Spread | Category: Lunch/Snacks | Ingredients: yellow onion, olive oil, garlic clove, celery, green bell pepper, tomato paste, white vinegar, salt, fresh ground pepper, fresh parsley, fresh lemon juice, cumin, cilantro leaf, cayenne
+
+Plate: Guacamole Grilled Cheese Sandwich | Category: Lunch/Snacks | Ingredients: avocados, onion, garlic clove, cilantro leaves, fresh lime juice, coarse salt, black pepper, roma tomato, cheddar cheese, butter
+
+Plate: Asian Twisted Rice Salad | Category: Rice | Ingredients: rice, carrot, green onions, scallion, celery, apple, water chestnut, peas, snow peas, spinach, tamari, lime juice, grapefruit juice, garlic clove
 
         QUESTION:
 
-        {query}
+        Can you suggest some plates that contain onion ?
 
         ANSWER:
-    """
-
-    return prompt
+    

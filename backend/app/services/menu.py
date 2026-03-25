@@ -4,6 +4,7 @@ from app.models.query import QueryModel
 from sentence_transformers import SentenceTransformer
 from app.utils.prompt import llm_prompt
 from app.utils.ollama_generate import ollama_generate
+import mlflow
 import pandas as pd
 import io
 
@@ -44,6 +45,7 @@ class MenuService:
         menu = self.model.get_menu()
         return menu
 
+    @mlflow.trace()
     def search_menu(self, user_query: str, limit: int = 5):
         query_vector = embedding_model.encode(user_query).tolist()
 
@@ -71,6 +73,7 @@ class MenuService:
         user_id: int,
         temperature: int = 0.2,
         max_tokens: int = 256,
+        log_mlflow: bool = False,
     ) -> str:
 
         # Build context from chunks
@@ -84,6 +87,9 @@ class MenuService:
         prompt = llm_prompt(query, context)
         answer = ollama_generate(prompt, ollama_url, model, temperature, max_tokens)
 
-        self.query_model.insert_query(query, answer, user_id)
+        mlflow.log_text(prompt, "prompt_template.txt")
+
+        if not log_mlflow:
+            self.query_model.insert_query(query, answer, user_id)
 
         return answer

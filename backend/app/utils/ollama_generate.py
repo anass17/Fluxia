@@ -1,6 +1,8 @@
 import requests
+import mlflow
 
 
+@mlflow.trace()
 def ollama_generate(
     prompt: str,
     ollama_url: str,

@@ -25,3 +25,4 @@ pytest-mock
 requests-mock
 httpx
 prometheus-client
+mlflow
