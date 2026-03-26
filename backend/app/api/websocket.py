@@ -57,38 +57,49 @@ async def vision_stream(websocket: WebSocket):
         "awaiting": (127, 34, 254),
     }
 
+    detections = []
+
     try:
         while True:
             ret, frame = cap.read()
+
             if not ret:
-                break
+                cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+                
+                detections = []
+                tracked_objects = None
+                
+                ret, frame = cap.read()
+                if not ret:
+                    break
 
             tables_data = []
-            detections = []
 
             h, w = frame.shape[:2]
 
-            ### YOLO Detection
-            results = yolo_model(frame, conf=0.5)
 
-            for box in results[0].boxes:
-                x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
-                score = box.conf[0].cpu().numpy()
+            if len(detections) == 0:
+                ### YOLO Detection
+                results = yolo_model(frame, conf=0.5)
 
-                detections.append([x1, y1, x2, y2, score])
+                for box in results[0].boxes:
+                    x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
+                    score = box.conf[0].cpu().numpy()
 
-            detections = np.array(detections)
+                    detections.append([x1, y1, x2, y2, score])
 
-            if len(detections) > 0:
-                detections_array = np.array(detections)
-                tracked_objects = tracker.update(detections_array)
-            else:
-                # Tell tracker no objects seen to maintain internal state
-                tracked_objects = tracker.update(np.empty((0, 5)))
+                detections = np.array(detections)
 
-            # if len(results[0].boxes) > 0:
-            #     boxes = results[0].boxes
-            #     tracked_objects = tracker.update(boxes)
+                if len(detections) > 0:
+                    detections_array = np.array(detections)
+                    tracked_objects = tracker.update(detections_array)
+                else:
+                    # Tell tracker no objects seen to maintain internal state
+                    tracked_objects = tracker.update(np.empty((0, 5)))
+
+                # if len(results[0].boxes) > 0:
+                #     boxes = results[0].boxes
+                #     tracked_objects = tracker.update(boxes)
 
             if tracked_objects is not None:
 
@@ -179,13 +190,29 @@ async def vision_stream(websocket: WebSocket):
                         }
                     )
 
-            # else:
+            else:
 
-            #     # YOLO Detection
-            #     results = yolo_model(frame, conf=0.5)
+                # YOLO Detection
 
-            #     if len(results[0].boxes) > 0:
-            #         boxes = results[0].boxes
+                results = yolo_model(frame, conf=0.5)
+
+                for box in results[0].boxes:
+                    x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
+                    score = box.conf[0].cpu().numpy()
+
+                    detections.append([x1, y1, x2, y2, score])
+
+                detections = np.array(detections)
+
+                if len(detections) > 0:
+                    detections_array = np.array(detections)
+                    tracked_objects = tracker.update(detections_array)
+                else:
+                    # Tell tracker no objects seen to maintain internal state
+                    tracked_objects = tracker.update(np.empty((0, 5)))
+
+
+                    
 
             # Encode frame to Base64
             _, buffer = cv2.imencode(".jpg", frame)
