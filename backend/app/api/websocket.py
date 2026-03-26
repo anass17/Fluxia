@@ -65,10 +65,10 @@ async def vision_stream(websocket: WebSocket):
 
             if not ret:
                 cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
-                
+
                 detections = []
                 tracked_objects = None
-                
+
                 ret, frame = cap.read()
                 if not ret:
                     break
@@ -76,7 +76,6 @@ async def vision_stream(websocket: WebSocket):
             tables_data = []
 
             h, w = frame.shape[:2]
-
 
             if len(detections) == 0:
                 ### YOLO Detection
@@ -210,9 +209,6 @@ async def vision_stream(websocket: WebSocket):
                 else:
                     # Tell tracker no objects seen to maintain internal state
                     tracked_objects = tracker.update(np.empty((0, 5)))
-
-
-                    
 
             # Encode frame to Base64
             _, buffer = cv2.imencode(".jpg", frame)
